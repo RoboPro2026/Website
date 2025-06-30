@@ -1,4 +1,6 @@
 import Image from "next/image";
+import NewsSection from "@/components/sections/NewsSection";
+import BlogSection from "@/components/sections/BlogSection";
 
 export default function Home() {
   return (
@@ -135,6 +137,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ニュース */}
+      <NewsSection />
+
       {/* メンバー */}
       <section id="members" className="py-24 bg-white relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -147,6 +152,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ブログ */}
+      <BlogSection />
 
       {/* スポンサー一覧 */}
       <section id="sponsor" className="py-24 bg-white relative z-10">
@@ -201,8 +209,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-
-      
 
       <footer className="bg-gradient-to-r from-orange-800 to-orange-900 text-white py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
