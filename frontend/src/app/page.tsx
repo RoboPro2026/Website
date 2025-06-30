@@ -49,7 +49,7 @@ export default function Home() {
       </section>
 
       {/* サークルについて */}
-      <section id="about" className="py-24 bg-gradient-to-r from-orange-600 to-orange-700 text-white relative z-10">
+      <section id="about" className="py-24 bg-gradient-to-r from-orange-600 to-orange-700 text-white border-t-8 border-b-8 border-orange-300 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-bold mb-6">サークルについて</h2>
@@ -84,7 +84,7 @@ export default function Home() {
       </section>
 
       {/* 活動内容 */}
-      <section id="activities" className="py-24 bg-white relative z-10">
+      <section id="activities" className="py-24 bg-white border-b-8 border-orange-100 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">活動内容</h2>
@@ -141,7 +141,7 @@ export default function Home() {
       <NewsSection />
 
       {/* メンバー */}
-      <section id="members" className="py-24 bg-white relative z-10">
+      <section id="members" className="py-24 bg-orange-50 border-b-8 border-orange-100 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">メンバー</h2>
@@ -157,7 +157,7 @@ export default function Home() {
       <BlogSection />
 
       {/* スポンサー一覧 */}
-      <section id="sponsor" className="py-24 bg-white relative z-10">
+      <section id="sponsor" className="py-24 bg-orange-50 border-b-8 border-orange-100 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">スポンサー</h2>
@@ -181,7 +181,7 @@ export default function Home() {
       </section>
 
       {/* お問い合わせ */}
-      <section id="contact" className="py-24 bg-gradient-to-br from-orange-100 to-orange-200 relative z-10">
+      <section id="contact" className="py-24 bg-gradient-to-br from-orange-50 to-orange-100 border-b-8 border-orange-200 relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">お問い合わせ</h2>
           <p className="text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
