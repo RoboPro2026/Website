@@ -33,10 +33,10 @@ const newsList = [
 
 export default function NewsSection() {
   return (
-    <section className="py-24 bg-orange-50 border-t-8 border-b-8 border-orange-400" id="news">
+    <section className="py-24 bg-gradient-to-br from-orange-50 to-orange-100 border-t-8 border-b-8 border-orange-400" id="news">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-orange-600 mb-10 text-center">ニュース</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 bg-white/80 rounded-2xl p-6 shadow-lg">
           {newsList.map((news) => (
             <Link key={news.id} href={`/news/${news.id}`} className="group z-10">
               <div className="bg-white rounded-xl shadow-md p-0 border-l-4 border-orange-400 flex flex-col h-full overflow-hidden transition-transform group-hover:-translate-y-1 group-hover:shadow-lg">

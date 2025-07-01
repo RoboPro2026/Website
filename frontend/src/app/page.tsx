@@ -25,7 +25,7 @@ export default function Home() {
       {/* ヒーローセクション（全画面・画像固定/範囲限定） */}
       <section className="relative w-full h-screen min-h-[400px] flex items-center justify-center overflow-hidden">
         {/* ヒーローセクション内だけでfixed画像を表示 */}
-        <div className="pointer-events-none fixed top-0 left-0 w-full h-screen z-0" style={{clipPath: 'inset(0 0 0 0)'}}>
+        <div className="pointer-events-none absolute top-0 left-0 w-full h-full z-0" style={{clipPath: 'inset(0 0 0 0)'}}>
           <Image
             src="/assets/home/hero.png"
             alt="サークル活動の様子"
@@ -82,6 +82,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* サークルについてと活動内容の間に波SVG */}
+      <div className="w-full h-20 overflow-hidden">
+        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <path
+            d="M0 43.9999C106.667 43.9999 213.333 7.99994 320 7.99994C426.667 7.99994 533.333 43.9999 640 43.9999C746.667 43.9999 853.333 7.99994 960 7.99994C1066.67 7.99994 1173.33 43.9999 1280 43.9999C1386.67 43.9999 1440 19.0266 1440 9.01329V100H0V43.9999Z"
+            fill="#fff"
+          />
+        </svg>
+      </div>
 
       {/* 活動内容 */}
       <section id="activities" className="py-24 bg-white border-b-8 border-orange-100 relative z-10">
