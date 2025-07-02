@@ -54,3 +54,208 @@ body {
 .font-soko {
   font-family: 'SokoMincho', serif;
 }
+
+/* カスタムコンポーネントクラス */
+.header {
+  @apply bg-white/90 backdrop-blur-sm border-b border-orange-200 sticky top-0 z-50 shadow-lg;
+}
+
+.header-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.header-content {
+  @apply flex justify-between items-center h-20;
+}
+
+.header-title {
+  @apply text-3xl font-bold text-orange-600;
+}
+
+.nav-menu {
+  @apply hidden md:flex space-x-12;
+}
+
+.nav-link {
+  @apply text-gray-700 hover:text-orange-600 transition-colors font-medium;
+}
+
+.hero-section {
+  @apply relative w-full h-screen min-h-[400px] flex items-center justify-center overflow-hidden;
+}
+
+.hero-bg {
+  @apply pointer-events-none absolute top-0 left-0 w-full h-full z-0;
+}
+
+.hero-overlay {
+  @apply absolute inset-0 bg-black/40;
+}
+
+.hero-content {
+  @apply relative z-10 flex flex-col items-center justify-center w-full h-full;
+}
+
+.hero-title {
+  @apply text-5xl md:text-7xl font-soko font-bold text-white drop-shadow-lg text-center leading-tight;
+}
+
+.hero-scroll {
+  @apply absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce z-10;
+}
+
+.scroll-text {
+  @apply text-white text-lg mb-1;
+}
+
+.scroll-icon {
+  @apply text-white animate-bounce;
+}
+
+.section-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-title {
+  @apply text-4xl font-bold mb-6;
+}
+
+.section-subtitle {
+  @apply text-xl max-w-4xl mx-auto leading-relaxed;
+}
+
+.about-section {
+  @apply py-24 bg-gradient-to-r from-orange-600 to-orange-700 text-white border-t-8 border-b-8 border-orange-300 relative z-10;
+}
+
+.about-subtitle {
+  @apply text-orange-100;
+}
+
+.about-card {
+  @apply text-center p-8 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/20 transition-all duration-300 border border-white/20;
+}
+
+.about-icon {
+  @apply w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg;
+}
+
+.about-icon-text {
+  @apply text-3xl text-orange-600;
+}
+
+.about-card-title {
+  @apply text-2xl font-semibold mb-4;
+}
+
+.about-card-text {
+  @apply text-orange-100 leading-relaxed;
+}
+
+.wave-divider {
+  @apply w-full h-20 overflow-hidden;
+}
+
+.activities-section {
+  @apply py-24 bg-white border-b-8 border-orange-100 relative z-10;
+}
+
+.activities-subtitle {
+  @apply text-gray-600;
+}
+
+.activity-card {
+  @apply bg-gradient-to-br from-orange-50 to-orange-100 p-10 rounded-2xl shadow-lg border-l-4 border-orange-600 hover:shadow-xl transition-all duration-300;
+}
+
+.activity-title {
+  @apply text-3xl font-semibold mb-6 text-gray-900;
+}
+
+.activity-text {
+  @apply text-gray-700 mb-6 leading-relaxed;
+}
+
+.activity-list {
+  @apply space-y-4 text-gray-700;
+}
+
+.activity-item {
+  @apply flex items-start;
+}
+
+.activity-bullet {
+  @apply text-orange-600 mr-3 mt-1 text-xl font-bold;
+}
+
+.members-section {
+  @apply py-24 bg-orange-50 border-b-8 border-orange-100 relative z-10;
+}
+
+.members-subtitle {
+  @apply text-gray-600;
+}
+
+.sponsor-section {
+  @apply py-24 bg-orange-50 border-b-8 border-orange-100 relative z-10;
+}
+
+.sponsor-subtitle {
+  @apply text-gray-600;
+}
+
+.sponsor-grid {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-items-center;
+}
+
+.sponsor-logo {
+  @apply h-16 object-contain;
+}
+
+.contact-section {
+  @apply py-24 bg-gradient-to-br from-orange-50 to-orange-100 border-b-8 border-orange-200 relative z-10;
+}
+
+.contact-container {
+  @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+}
+
+.contact-subtitle {
+  @apply text-gray-700;
+}
+
+.contact-card {
+  @apply text-center bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg;
+}
+
+.contact-card-title {
+  @apply text-2xl font-semibold mb-6 text-gray-900;
+}
+
+.contact-info {
+  @apply space-y-3 text-gray-700;
+}
+
+.contact-button {
+  @apply bg-orange-600 text-white px-12 py-4 rounded-lg hover:bg-orange-700 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+}
+
+.footer {
+  @apply bg-gradient-to-r from-orange-800 to-orange-900 text-white py-16 relative z-10;
+}
+
+.footer-title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.footer-text {
+  @apply text-orange-200 mb-8;
+}
+
+.footer-divider {
+  @apply border-t border-orange-700 pt-8;
+}
+
+.footer-copyright {
+  @apply text-orange-300;
+}
