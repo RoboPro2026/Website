@@ -1,10 +1,24 @@
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import NewsSection from "@/components/sections/NewsSection";
 import BlogSection from "@/components/sections/BlogSection";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
+  }
+
   return (
-    <div className="min-h-screen bg-orange-50">
+    <div className="min-h-screen bg-orange-50 fade-in">
       {/* ヘッダー */}
       <header className="header">
         <div className="header-container">

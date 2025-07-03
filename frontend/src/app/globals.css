@@ -259,3 +259,44 @@ body {
 .footer-copyright {
   @apply text-orange-300;
 }
+
+/* ロード画面のスタイル */
+.loading-screen {
+  @apply fixed inset-0 bg-white z-[9999] flex items-center justify-center;
+}
+
+.loading-logo-container {
+  @apply relative w-32 h-32 md:w-48 md:h-48;
+}
+
+.loading-overlay {
+  @apply absolute inset-0 bg-black transition-opacity duration-300;
+}
+
+.loading-progress-bar {
+  @apply mt-8 w-64 h-2 bg-gray-200 rounded-full overflow-hidden;
+}
+
+.loading-progress-fill {
+  @apply h-full bg-orange-600 transition-all duration-300 ease-out;
+}
+
+.loading-text {
+  @apply mt-4 text-center text-gray-600 font-medium;
+}
+
+/* フェードインアニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
