@@ -18,7 +18,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-orange-50 fade-in">
+    <div className="min-h-screen bg-stone-50 fade-in">
       {/* ヘッダー */}
       <header className="header">
         <div className="header-container">
@@ -71,41 +71,31 @@ export default function Home() {
               長岡技科大ロボコンプロジェクトは、NHK学生ロボコンやABUロボコンでの優勝を目指し、ロボットの設計・製作・制御・プログラミングに日々取り組んでいる学部生による学生団体です。ものづくりやチームワークを通じて成長できる環境です。初心者も大歓迎！
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="about-card">
-              <div className="about-icon">
-                <span className="about-icon-text">🎯</span>
-              </div>
-              <h3 className="about-card-title">目標</h3>
-              <p className="about-card-text">NHK学生ロボコン・ABUロボコンでの優勝を目指しています。</p>
-            </div>
-            <div className="about-card">
-              <div className="about-icon">
-                <span className="about-icon-text">🤖</span>
-              </div>
-              <h3 className="about-card-title">活動</h3>
-              <p className="about-card-text">ロボットの設計・製作・プログラミング、技術交流、新歓イベントなど。</p>
-            </div>
-            <div className="about-card">
-              <div className="about-icon">
-                <span className="about-icon-text">👥</span>
-              </div>
-              <h3 className="about-card-title">メンバー</h3>
-              <p className="about-card-text">学部1年生から4年生まで在籍。初心者も経験者も大歓迎です。</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {
+              [
+                { name: '機械班', description: 'ロボットの設計・製作を担当。機械加工やCAD設計を通じて、ロボットの骨格を作り上げます。', imgSrc: '/assets/home/hero.png' },
+                { name: '回路班', description: '電子回路の設計・製作を担当。基板設計や配線を通じて、ロボットの神経系を作り上げます。', imgSrc: '/assets/home/hero.png' },
+                { name: '制御班', description: 'プログラミング・制御を担当。マイコン制御やソフトウェア開発を通じて、ロボットの頭脳を作り上げます。', imgSrc: '/assets/home/hero.png' },
+                { name: '運営班', description: 'サークルの運営・広報を担当。イベント企画や広報活動を通じて、チーム全体を支えます。', imgSrc: '/assets/home/hero.png' }
+              ].map((team) => (
+                <div key={team.name} className="about-card group">
+                  <Image src={team.imgSrc} alt={team.name} layout="fill" className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-orange-700/80 via-orange-600/20 to-transparent transition-all duration-300 group-hover:from-orange-700/90 group-hover:via-orange-600/50"></div>
+                  <div className="relative flex flex-col justify-end h-full p-6 text-white">
+                    <h3 className="text-2xl font-bold tracking-tight">{team.name}</h3>
+                    <div className="mt-2 overflow-hidden">
+                      <p className="text-white/80 transition-all duration-500 ease-in-out translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                        {team.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
       </section>
-
-      {/* 波SVG */}
-      <div className="wave-divider">
-        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-          <path
-            d="M0 43.9999C106.667 43.9999 213.333 7.99994 320 7.99994C426.667 7.99994 533.333 43.9999 640 43.9999C746.667 43.9999 853.333 7.99994 960 7.99994C1066.67 7.99994 1173.33 43.9999 1280 43.9999C1386.67 43.9999 1440 19.0266 1440 9.01329V100H0V43.9999Z"
-            fill="#fff"
-          />
-        </svg>
-      </div>
 
       {/* 活動内容 */}
       <section id="activities" className="activities-section">
@@ -200,6 +190,7 @@ export default function Home() {
             <img src="/assets/sponser/sprix.png" alt="スポンサー sprix" className="sponsor-logo" />
             <img src="/assets/sponser/noex.png" alt="スポンサー noex" className="sponsor-logo" />
             <img src="/assets/sponser/tdk.png" alt="スポンサー tdk" className="sponsor-logo" />
+            <img src="/assets/sponser/makita.png" alt="スポンサー makita" className="sponsor-logo" />
           </div>
         </div>
       </section>

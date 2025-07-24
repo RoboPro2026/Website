@@ -24,7 +24,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           }, 1000);
           return 100;
         }
-        return prev + Math.random() * 8 + 2; // 2-10%ずつ進む（よりゆっくり）
+        return prev + Math.random() * 20 + 2; // 2-10%ずつ進む（よりゆっくり）
       });
     }, 400); // 400ms間隔（よりゆっくり）
 
