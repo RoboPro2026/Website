@@ -157,7 +157,7 @@ body {
 }
 
 .activities-section {
-  @apply py-28 bg-stone-50;
+  @apply hidden;
 }
 
 .activities-subtitle {

@@ -4,32 +4,21 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface LoadingScreenProps {
-  onLoadingComplete: () => void;
+  progress: number;
 }
 
-export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps) {
-  const [progress, setProgress] = useState(0);
+export default function LoadingScreen({ progress }: LoadingScreenProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // ロード進行をシミュレート
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          // ロード完了後、少し待ってから非表示にする
-          setTimeout(() => {
-            setIsVisible(false);
-            onLoadingComplete();
-          }, 1000);
-          return 100;
-        }
-        return prev + Math.random() * 20 + 2; // 2-10%ずつ進む（よりゆっくり）
-      });
-    }, 400); // 400ms間隔（よりゆっくり）
-
-    return () => clearInterval(interval);
-  }, [onLoadingComplete]);
+    if (progress >= 100) {
+      // ロード完了後、少し待ってから非表示にする
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [progress]);
 
   if (!isVisible) return null;
 

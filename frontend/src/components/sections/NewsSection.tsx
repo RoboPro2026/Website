@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const newsList = [
   {
@@ -33,26 +34,35 @@ const newsList = [
 
 export default function NewsSection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-orange-50 to-orange-100 border-t-8 border-b-8 border-orange-400" id="news">
-      <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-orange-600 mb-10 text-center">ニュース</h2>
-        <div className="grid md:grid-cols-3 gap-8 bg-white/80 rounded-2xl p-6 shadow-lg">
+    <section className="py-28 bg-stone-50" id="news">
+      <div className="section-container">
+        <div className="text-center mb-16">
+          <h2 className="section-title text-stone-800">ニュース</h2>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsList.map((news) => (
-            <Link key={news.id} href={`/news/${news.id}`} className="group z-10">
-              <div className="bg-white rounded-xl shadow-md p-0 border-l-4 border-orange-400 flex flex-col h-full overflow-hidden transition-transform group-hover:-translate-y-1 group-hover:shadow-lg">
-                <div className="w-full h-40 bg-gray-100 relative">
-                  {/* <img src={news.image} alt={news.title} className="object-cover w-full h-full" /> */}
-                  <span className="absolute top-2 left-2 bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow font-semibold">{news.category}</span>
+            <Link key={news.id} href={`/news/${news.id}`} className="group block">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
+                <div className="w-full h-48 relative">
+                  <Image src={news.image || '/assets/home/hero.png'} alt={news.title} layout="fill" className="object-cover" />
+                  <span className="absolute top-3 right-3 bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow font-semibold">{news.category}</span>
                 </div>
-                <div className="p-5 flex flex-col min-h-[140px] text-black">
-                  <span className="text-xs text-gray-400 mb-1 text-black">{news.date}</span>
-                  <h3 className="text-lg font-semibold text-black mb-2 line-clamp-2">{news.title}</h3>
-                  <p className="text-black text-sm mb-2 line-clamp-3">{news.excerpt}</p>
-                  <span className="text-orange-500 text-xs mt-auto font-bold group-hover:underline">続きを読む →</span>
+                <div className="p-6">
+                  <p className="text-sm text-stone-500 mb-2">{news.date}</p>
+                  <h3 className="text-xl font-bold text-stone-800 mb-3 line-clamp-2 leading-tight">{news.title}</h3>
+                  <p className="text-stone-600 text-base line-clamp-3 mb-4">{news.excerpt}</p>
+                  <span className="text-orange-500 font-semibold group-hover:underline">
+                    続きを読む
+                  </span>
                 </div>
               </div>
             </Link>
           ))}
+        </div>
+        <div className="text-center mt-16">
+          <Link href="/news" className="contact-button">
+            ニュース一覧へ
+          </Link>
         </div>
       </div>
     </section>
