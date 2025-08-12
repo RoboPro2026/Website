@@ -1,38 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-
-const newsList = [
-  {
-    id: "1",
-    title: "NHK学生ロボコン2024に出場決定！",
-    date: "2024-06-01",
-    image: "/assets/news/robocon2024.jpg",
-    content: "今年もNHK学生ロボコンに出場します。応援よろしくお願いします！",
-    category: "大会情報",
-    excerpt: "NHK学生ロボコン2024に出場が決定しました！今年も応援よろしくお願いします。"
-  },
-  {
-    id: "2",
-    title: "新入生歓迎会を開催しました",
-    date: "2024-04-15",
-    image: "/assets/news/welcome.jpg",
-    content: "たくさんの新入生が参加してくれました。",
-    category: "イベント",
-    excerpt: "新入生歓迎会を開催し、多くの新入生が参加してくれました。"
-  },
-  {
-    id: "3",
-    title: "スポンサー様ご紹介",
-    date: "2024-03-10",
-    image: "/assets/news/sponsor.jpg",
-    content: "新たに3社のスポンサー様にご支援いただくことになりました。",
-    category: "お知らせ",
-    excerpt: "新たに3社のスポンサー様にご支援いただくことになりました。"
-  },
-];
+import { MOCK_NEWS_LIST } from "@/lib/mock-data";
 
 export default function NewsSection() {
+  const newsList = MOCK_NEWS_LIST.data.slice(0, 3); // トップページには最新3件のみ表示
+
   return (
     <section className="py-28 bg-stone-50" id="news">
       <div className="section-container">
@@ -40,11 +13,16 @@ export default function NewsSection() {
           <h2 className="section-title text-stone-800">ニュース</h2>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {newsList.map((news) => (
-            <Link key={news.id} href={`/news/${news.id}`} className="group block">
+          {newsList.map(({ id, attributes: news }) => (
+            <Link key={id} href={`/news/${id}`} className="group block">
               <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
                 <div className="w-full h-48 relative">
-                  <Image src={news.image || '/assets/home/hero.png'} alt={news.title} layout="fill" className="object-cover" />
+                  <Image 
+                    src={news.image.data?.attributes.url || '/assets/home/hero.png'} 
+                    alt={news.title} 
+                    layout="fill" 
+                    className="object-cover" 
+                  />
                   <span className="absolute top-3 right-3 bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow font-semibold">{news.category}</span>
                 </div>
                 <div className="p-6">
