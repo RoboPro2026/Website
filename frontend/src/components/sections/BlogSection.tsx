@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const blogList = [
   { title: "ロボコン機体設計の裏側", date: "2024-05-20", excerpt: "今年の機体設計で工夫したポイントや苦労話を紹介します。" },
@@ -19,6 +20,11 @@ export default function BlogSection() {
               <p className="text-gray-700 text-sm">{blog.excerpt}</p>
             </div>
           ))}
+        </div>
+        <div className="text-center mt-16">
+          <Link href="/blog" className="contact-button">
+            ブログ一覧へ
+          </Link>
         </div>
       </div>
     </section>

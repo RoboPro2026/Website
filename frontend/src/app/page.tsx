@@ -1,27 +1,72 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import NewsSection from "@/components/sections/NewsSection";
 import BlogSection from "@/components/sections/BlogSection";
+import LoadingScreen from "@/components/LoadingScreen";
+
+// 読み込む画像のリスト
+const imageUrls = [
+  '/assets/home/hero.png',
+  '/assets/home/denshi.png',
+  '/assets/news/robocon2024.jpg',
+  '/assets/news/welcome.jpg',
+  '/assets/news/sponsor.jpg',
+  // ... 他の主要な画像もここに追加
+];
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-orange-50">
-      {/* ヘッダー */}
-      <header className="header">
-        <div className="header-container">
-          <div className="header-content">
-            <div className="flex items-center">
-              <h1 className="header-title">長岡技科大ロボコンプロジェクト</h1>
-            </div>
-            <nav className="nav-menu">
-              <a href="#about" className="nav-link">サークルについて</a>
-              <a href="#activities" className="nav-link">活動内容</a>
-              <a href="#members" className="nav-link">メンバー</a>
-              <a href="#contact" className="nav-link">お問い合わせ</a>
-            </nav>
-          </div>
-        </div>
-      </header>
+  const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
+  useEffect(() => {
+    const visited = sessionStorage.getItem("visited");
+    if (visited) {
+      setIsLoading(false);
+      return;
+    }
+
+    let loadedCount = 0;
+    const totalImages = imageUrls.length;
+
+    if (totalImages === 0) {
+        setProgress(100);
+        return;
+    }
+
+    imageUrls.forEach((src) => {
+      const img = new (window as any).Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        const newProgress = (loadedCount / totalImages) * 100;
+        setProgress(newProgress);
+      };
+      img.onerror = () => {
+        loadedCount++;
+        const newProgress = (loadedCount / totalImages) * 100;
+        setProgress(newProgress);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (progress >= 100) {
+      setTimeout(() => {
+        setIsLoading(false);
+        sessionStorage.setItem("visited", "true");
+      }, 1200); // LoadingScreenのフェードアウトと合わせる
+    }
+  }, [progress]);
+
+
+  if (isLoading) {
+    return <LoadingScreen progress={progress} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-stone-50 fade-in">
       {/* ヒーローセクション */}
       <section className="hero-section">
         <div className="hero-bg" style={{clipPath: 'inset(0 0 0 0)'}}>
@@ -54,77 +99,44 @@ export default function Home() {
           <div className="text-center mb-20">
             <h2 className="section-title">サークルについて</h2>
             <p className="section-subtitle about-subtitle">
-              長岡技科大ロボコンプロジェクトは、NHK学生ロボコンやABUロボコンでの優勝を目指し、ロボットの設計・製作・制御・プログラミングに日々取り組んでいる学部生による学生団体です。ものづくりやチームワークを通じて成長できる環境です。初心者も大歓迎！
+              長岡技科大ロボコンプロジェクトは、NHK学生ロボコンやABUロボコンでの優勝を目指し活動する学生団体です。私たちは「機械班」「回路班」「制御班」「運営班」の4つの班に分かれ、それぞれの専門知識を活かしながら、一つの目標に向かってロボット開発に取り組んでいます。ものづくりやチームワークを通じて成長できる環境で、初心者も大歓迎です！
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="about-card">
-              <div className="about-icon">
-                <span className="about-icon-text">🎯</span>
-              </div>
-              <h3 className="about-card-title">目標</h3>
-              <p className="about-card-text">NHK学生ロボコン・ABUロボコンでの優勝を目指しています。</p>
-            </div>
-            <div className="about-card">
-              <div className="about-icon">
-                <span className="about-icon-text">🤖</span>
-              </div>
-              <h3 className="about-card-title">活動</h3>
-              <p className="about-card-text">ロボットの設計・製作・プログラミング、技術交流、新歓イベントなど。</p>
-            </div>
-            <div className="about-card">
-              <div className="about-icon">
-                <span className="about-icon-text">👥</span>
-              </div>
-              <h3 className="about-card-title">メンバー</h3>
-              <p className="about-card-text">学部1年生から4年生まで在籍。初心者も経験者も大歓迎です。</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {
+              [
+                { name: '機械班', description: 'ロボットの設計・製作を担当。機械加工やCAD設計を通じて、ロボットの骨格を作り上げます。', imgSrc: '/assets/home/hero.png' },
+                { name: '回路班', description: '電子回路の設計・製作を担当。基板設計や配線を通じて、ロボットの神経系を作り上げます。', imgSrc: '/assets/home/denshi.png' },
+                { name: '制御班', description: 'プログラミング・制御を担当。マイコン制御やソフトウェア開発を通じて、ロボットの頭脳を作り上げます。', imgSrc: '/assets/home/hero.png' },
+                { name: '運営班', description: 'サークルの運営・広報を担当。イベント企画や広報活動を通じて、チーム全体を支えます。', imgSrc: '/assets/home/hero.png' }
+              ].map((team) => (
+                <div key={team.name} className="about-card group">
+                  <Image src={team.imgSrc} alt={team.name} layout="fill" className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-orange-700/80 via-orange-600/20 to-transparent transition-all duration-300 group-hover:from-orange-700/90 group-hover:via-orange-600/50"></div>
+                  <div className="relative flex flex-col justify-end h-full p-6 text-white">
+                    <h3 className="text-2xl font-bold tracking-tight">{team.name}</h3>
+                    <div className="mt-2 overflow-hidden">
+                      <p className="text-white/80 transition-all duration-500 ease-in-out translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
+                        {team.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
           </div>
-        </div>
-      </section>
 
-      {/* 波SVG */}
-      <div className="wave-divider">
-        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-          <path
-            d="M0 43.9999C106.667 43.9999 213.333 7.99994 320 7.99994C426.667 7.99994 533.333 43.9999 640 43.9999C746.667 43.9999 853.333 7.99994 960 7.99994C1066.67 7.99994 1173.33 43.9999 1280 43.9999C1386.67 43.9999 1440 19.0266 1440 9.01329V100H0V43.9999Z"
-            fill="#fff"
-          />
-        </svg>
-      </div>
-
-      {/* 活動内容 */}
-      <section id="activities" className="activities-section">
-        <div className="section-container">
-          <div className="text-center mb-20">
-            <h2 className="section-title text-gray-900">活動内容</h2>
-            <p className="section-subtitle activities-subtitle">
-              私たちの主な活動内容
+          {/* その他の活動 */}
+          <div className="mt-24 text-center">
+            <h3 className="text-3xl font-bold text-stone-800 mb-4">技術を高め、仲間と繋がる</h3>
+            <p className="text-stone-600 max-w-2xl mx-auto">
+              ロボット製作だけじゃない。私たちは、イベントや交流会を通じて、メンバー同士の絆を深め、共に成長していくことを大切にしています。
             </p>
           </div>
-          <div className="grid lg:grid-cols-2 gap-12">
+
+          <div className="mt-12 grid md:grid-cols-2 gap-8">
             <div className="activity-card">
-              <h3 className="activity-title">ロボット製作</h3>
-              <p className="activity-text">
-                ロボットの設計・製作・プログラミング・制御を行い、NHK学生ロボコンやABUロボコンに挑戦しています。
-              </p>
-              <ul className="activity-list">
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>ロボット設計・機械加工</span>
-                </li>
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>電子回路・制御・プログラミング</span>
-                </li>
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>チームビルディング・作業会</span>
-                </li>
-              </ul>
-            </div>
-            <div className="activity-card">
-              <h3 className="activity-title">イベント・交流</h3>
+              <h4 className="activity-title">イベント・交流</h4>
               <p className="activity-text">
                 新歓イベントや技術交流会、合宿なども開催し、メンバー同士の親睦を深めています。
               </p>
@@ -143,6 +155,26 @@ export default function Home() {
                 </li>
               </ul>
             </div>
+            <div className="activity-card">
+              <h4 className="activity-title">技術勉強会</h4>
+              <p className="activity-text">
+                各班の専門知識を共有する勉強会を定期的に開催。学部や専門分野の垣根を越えて、幅広い技術を学び合います。
+              </p>
+              <ul className="activity-list">
+                <li className="activity-item">
+                  <span className="activity-bullet">•</span>
+                  <span>CAD講習会</span>
+                </li>
+                <li className="activity-item">
+                  <span className="activity-bullet">•</span>
+                  <span>プログラミング勉強会</span>
+                </li>
+                <li className="activity-item">
+                  <span className="activity-bullet">•</span>
+                  <span>回路設計入門</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -150,45 +182,8 @@ export default function Home() {
       {/* ニュース */}
       <NewsSection />
 
-      {/* メンバー */}
-      <section id="members" className="members-section">
-        <div className="section-container">
-          <div className="text-center mb-20">
-            <h2 className="section-title text-gray-900">メンバー</h2>
-            <p className="section-subtitle members-subtitle">
-              学部1年生から4年生まで、機械・電気・情報・制御など多様な分野の学部生が協力し合い、ロボコンに挑戦しています。
-              初心者も大歓迎！先輩が丁寧にサポートします。
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ブログ */}
       <BlogSection />
-
-      {/* スポンサー一覧 */}
-      <section id="sponsor" className="sponsor-section">
-        <div className="section-container">
-          <div className="text-center mb-20">
-            <h2 className="section-title text-gray-900">スポンサー</h2>
-            <p className="section-subtitle sponsor-subtitle">
-              長岡技科大ロボコンプロジェクトは、以下のスポンサー企業・団体の皆様からご支援をいただいています。<br />
-            </p>
-          </div>
-          <div className="sponsor-grid">
-            <img src="/assets/sponser/mjs.png" alt="スポンサー mjs" className="sponsor-logo" />
-            <img src="/assets/sponser/ocs.png" alt="スポンサー ocs" className="sponsor-logo" />
-            <img src="/assets/sponser/tkf.png" alt="スポンサー tkf" className="sponsor-logo" />
-            <img src="/assets/sponser/systecom.png" alt="スポンサー systecom" className="sponsor-logo" />
-            <img src="/assets/sponser/justem.png" alt="スポンサー justem" className="sponsor-logo" />
-            <img src="/assets/sponser/fieldworks.png" alt="スポンサー fieldworks" className="sponsor-logo" />
-            <img src="/assets/sponser/unext.png" alt="スポンサー unext" className="sponsor-logo" />
-            <img src="/assets/sponser/sprix.png" alt="スポンサー sprix" className="sponsor-logo" />
-            <img src="/assets/sponser/noex.png" alt="スポンサー noex" className="sponsor-logo" />
-            <img src="/assets/sponser/tdk.png" alt="スポンサー tdk" className="sponsor-logo" />
-          </div>
-        </div>
-      </section>
 
       {/* お問い合わせ */}
       <section id="contact" className="contact-section">
@@ -201,8 +196,8 @@ export default function Home() {
             <div className="contact-card">
               <h3 className="contact-card-title">連絡先</h3>
               <div className="contact-info">
-                <p>Email: example@example.com</p>
-                <p>Twitter: @example</p>
+                <p>Email: robopro.nut@gmail.com</p>
+                <p>Twitter: @nut_robopro</p>
                 <p>Instagram: @example</p>
               </div>
             </div>
@@ -219,22 +214,6 @@ export default function Home() {
           </button>
         </div>
       </section>
-
-      <footer className="footer">
-        <div className="section-container">
-          <div className="text-center">
-            <h3 className="footer-title">長岡技科大ロボコンプロジェクト</h3>
-            <p className="footer-text">
-              学生ロボコン・ABUロボコンでの優勝を目指して活動しています。
-            </p>
-            <div className="footer-divider">
-              <p className="footer-copyright">
-                © 2024 長岡技科大ロボコンプロジェクト. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
