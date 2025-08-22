@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MOCK_NEWS_LIST } from '@/lib/mock-data';
-import { News } from '@/types/cms';
 
 export default function NewsListPage() {
   // モックデータを取得

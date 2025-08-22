@@ -16,7 +16,14 @@ const imageUrls = [
   // ... 他の主要な画像もここに追加
 ];
 
-const sponsors = [
+interface Sponsor {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+const sponsors: Sponsor[] = [
   { src: '/assets/sponser/tdk.png', alt: 'TDK', width: 150, height: 50 },
   { src: '/assets/sponser/makita.png', alt: 'Makita', width: 150, height: 50 },
   { src: '/assets/sponser/mjs.png', alt: 'MJS', width: 150, height: 50 },
@@ -33,7 +40,7 @@ const sponsors = [
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [shuffledSponsors, setShuffledSponsors] = useState<typeof sponsors>([]);
+  const [shuffledSponsors, setShuffledSponsors] = useState<Sponsor[]>([]);
 
   useEffect(() => {
     // Fisher-Yates shuffle algorithm

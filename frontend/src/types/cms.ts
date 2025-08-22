@@ -47,7 +47,7 @@ interface StrapiMedia {
     url: string;
     previewUrl: string | null;
     provider: string;
-    provider_metadata: any;
+    provider_metadata: unknown;
     createdAt: string;
     updatedAt: string;
   }> | null;
@@ -87,5 +87,5 @@ export interface StrapiCollectionResponse<T> {
 // APIレスポンスの型 (単一記事)
 export interface StrapiSingleResponse<T> {
   data: StrapiDataItem<T>;
-  meta: {};
+  meta: Record<string, never>;
 }
