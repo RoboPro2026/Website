@@ -1,47 +1,68 @@
-import { notFound } from "next/navigation";
+import React from 'react';
+import Image from 'next/image';
+import { MOCK_NEWS_LIST } from '@/lib/mock-data';
+import { notFound } from 'next/navigation';
 
-const newsList = [
-  {
-    id: "1",
-    title: "NHK学生ロボコン2024に出場決定！",
-    date: "2024-06-01",
-    image: "/assets/news/robocon2024.jpg",
-    content: "今年もNHK学生ロボコンに出場します。応援よろしくお願いします！",
-    category: "大会情報",
-  },
-  {
-    id: "2",
-    title: "新入生歓迎会を開催しました",
-    date: "2024-04-15",
-    image: "/assets/news/welcome.jpg",
-    content: "たくさんの新入生が参加してくれました。",
-    category: "イベント",
-  },
-  {
-    id: "3",
-    title: "スポンサー様ご紹介",
-    date: "2024-03-10",
-    image: "/assets/news/sponsor.jpg",
-    content: "新たに3社のスポンサー様にご支援いただくことになりました。",
-    category: "お知らせ",
-  },
-];
+// generateStaticParams を使って静的にパスを生成
+export async function generateStaticParams() {
+  const news = MOCK_NEWS_LIST.data;
+  return news.map((article) => ({
+    id: article.id.toString(),
+  }));
+}
 
-export default function NewsDetailPage({ params }: { params: { id: string } }) {
-  const news = newsList.find((n) => n.id === params.id);
-  if (!news) return notFound();
+// ニュース記事を取得する関数（モック）
+async function getNewsArticle(id: string) {
+  const article = MOCK_NEWS_LIST.data.find((item) => item.id.toString() === id);
+  return article;
+}
+
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function NewsArticlePage({ params }: Props) {
+  const article = await getNewsArticle(params.id);
+
+  if (!article) {
+    notFound();
+  }
+
+  const { title, content, date, image, category } = article.attributes;
+  const imageUrl = image.data?.attributes.url || '/assets/home/hero.png';
 
   return (
-    <main className="min-h-screen bg-gray-50 py-16 px-4">
-      <div className="max-w-2xl mx-auto bg-white rounded-xl shadow p-8">
-        <div className="mb-6">
-          <span className="bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow font-semibold mr-2">{news.category}</span>
-          <span className="text-xs text-gray-400">{news.date}</span>
+    <div className="min-h-screen bg-white">
+      <main className="py-20 px-4 md:px-8 lg:px-16">
+        <div className="max-w-3xl mx-auto">
+
+          <article>
+            <header className="mb-12 border-b pb-8">
+              <p className="text-orange-500 font-semibold mb-2">{category}</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                {title}
+              </h1>
+              <p className="mt-4 text-gray-500">{date}</p>
+            </header>
+            
+            <div className="relative w-full h-96 mb-12 rounded-lg overflow-hidden shadow-lg">
+              <Image 
+                src={imageUrl} 
+                alt={title} 
+                layout="fill" 
+                className="object-cover"
+              />
+            </div>
+
+            <div className="prose prose-lg max-w-none">
+              {/* TODO: 本来はMarkdownをHTMLに変換して表示する */}
+              <p>{content}</p>
+            </div>
+          </article>
+
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">{news.title}</h1>
-        <img src={news.image} alt={news.title} className="w-full h-64 object-cover rounded-lg mb-6" />
-        <div className="text-gray-800 text-base leading-relaxed whitespace-pre-line">{news.content}</div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 } 
