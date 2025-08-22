@@ -3,6 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { MOCK_NEWS_LIST } from "@/lib/mock-data";
 
+// basePathを考慮した画像パスの生成
+const getAssetPath = (path: string) => {
+  // GitHub Pagesの場合、basePathは/Website
+  return `/Website${path}`;
+};
+
 export default function NewsSection() {
   const newsList = MOCK_NEWS_LIST.data.slice(0, 3); // トップページには最新3件のみ表示
 
@@ -18,7 +24,7 @@ export default function NewsSection() {
               <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
                 <div className="w-full h-48 relative">
                   <Image 
-                    src={news.image.data?.attributes.url || '/assets/home/hero.png'} 
+                    src={news.image.data?.attributes.url || getAssetPath('/assets/home/hero.png')} 
                     alt={news.title} 
                     layout="fill" 
                     className="object-cover" 
