@@ -17,7 +17,12 @@ function getNewsArticle(id: string) {
   return article;
 }
 
-export default function NewsArticlePage({ params }: { params: { id: string } }) {
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default function NewsArticlePage({ params }: Props) {
   const article = getNewsArticle(params.id);
 
   if (!article) {
