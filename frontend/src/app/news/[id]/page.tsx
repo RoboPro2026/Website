@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 }
 
 // ニュース記事を取得する関数（モック）
-function getNewsArticle(id: string) {
+async function getNewsArticle(id: string) {
   const article = MOCK_NEWS_LIST.data.find((item) => item.id.toString() === id);
   return article;
 }
@@ -22,8 +22,8 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default function NewsArticlePage({ params }: Props) {
-  const article = getNewsArticle(params.id);
+export default async function NewsArticlePage({ params }: Props) {
+  const article = await getNewsArticle(params.id);
 
   if (!article) {
     notFound();
