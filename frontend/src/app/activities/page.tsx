@@ -1,46 +1,52 @@
 import React from 'react';
 import Image from 'next/image';
 
+// basePathを考慮した画像パスの生成
+const getAssetPath = (path: string) => {
+  // GitHub Pagesの場合、basePathは/Website
+  return `/Website${path}`;
+};
+
 const representative = {
   name: "五十嵐 幸多",
   title: "代表",
   greeting: `いい感じのこめんと(ちょっと長め)。`,
-  imageUrl: "/assets/home/hero.png" // Placeholder
+  imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
 };
 
 const challengeImages = [
-  '/assets/news/robocon2024.jpg',
-  '/assets/home/hero.png',
-  '/assets/news/sponsor.jpg',
-  '/assets/home/hero.png'
+  getAssetPath('/assets/news/robocon2024.jpg'),
+  getAssetPath('/assets/home/hero.png'),
+  getAssetPath('/assets/news/sponsor.jpg'),
+  getAssetPath('/assets/home/hero.png')
 ];
 const communityImages = [
-  '/assets/news/welcome.jpg',
-  '/assets/home/hero.png',
-  '/assets/sponser/tdk.png',
-  '/assets/home/hero.png'
+  getAssetPath('/assets/news/welcome.jpg'),
+  getAssetPath('/assets/home/hero.png'),
+  getAssetPath('/assets/sponser/tdk.png'),
+  getAssetPath('/assets/home/hero.png')
 ];
 
 const teams = [
   {
     name: '機械班',
-    description: 'ロボットの”身体”を作るエキスパート。3DCADによる設計から、工作機械を駆使した部品製作まで、アイデアを物理的な形にする役割を担います。',
-    imageUrl: "/assets/home/hero.png" // Placeholder
+    description: 'ロボットの"身体"を作るエキスパート。3DCADによる設計から、工作機械を駆使した部品製作まで、アイデアを物理的な形にする役割を担います。',
+    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
   },
   {
     name: '回路班',
-    description: 'ロボットの”神経”を司る電子回路のプロフェッショナル。モータードライバやセンサー基板の設計・製作を行い、ロボットに命を吹き込みます。',
-    imageUrl: "/assets/home/hero.png" // Placeholder
+    description: 'ロボットの"神経"を司る電子回路のプロフェッショナル。モータードライバやセンサー基板の設計・製作を行い、ロボットに命を吹き込みます。',
+    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
   },
   {
     name: '制御班',
-    description: 'ロボットの”頭脳”を開発するプログラマー集団。マイコンのプログラミングやAIによる画像認識など、ソフトウェアでロボットの動きを制御します。',
-    imageUrl: "/assets/home/hero.png" // Placeholder
+    description: 'ロボットの"頭脳"を開発するプログラマー集団。マイコンのプログラミングやAIによる画像認識など、ソフトウェアでロボットの動きを制御します。',
+    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
   },
   {
     name: '運営班',
     description: 'プロジェクト全体を支える縁の下の力持ち。スポンサー渉外、広報活動、会計管理など、円滑なプロジェクト運営に不可欠な役割を担います。',
-    imageUrl: "/assets/home/hero.png" // Placeholder
+    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
   }
 ];
 
@@ -96,14 +102,14 @@ export default function ActivitiesPage() {
         <div className="py-20 bg-stone-50">
           <div className="max-w-5xl mx-auto px-4 md:px-8 lg:px-16 grid md:grid-cols-2 gap-12 items-start">
             <div className="bg-white rounded-lg shadow-xl p-8 transition-transform duration-300 hover:-translate-y-2">
-              <Image src="/assets/home/hero.png" alt="NHK学生ロボコン ロゴ" width={250} height={125} className="mx-auto mb-6" />
+              <Image src={getAssetPath("/assets/home/hero.png")} alt="NHK学生ロボコン ロゴ" width={250} height={125} className="mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-center mb-4">NHK学生ロボコン</h3>
               <p className="text-left leading-relaxed text-gray-600">
                 NHKが主催する、全国の大学が参加するロボットコンテストです。毎年異なる競技課題が設定され、学生たちの独創的なアイデアと技術力が試されます。この大会で優勝したチームが、日本代表としてABUロボコンへの出場権を得ます。
               </p>
             </div>
             <div className="bg-white rounded-lg shadow-xl p-8 transition-transform duration-300 hover:-translate-y-2">
-              <Image src="/assets/home/hero.png" alt="ABUロボコン ロゴ" width={250} height={125} className="mx-auto mb-6" />
+              <Image src={getAssetPath("/assets/home/hero.png")} alt="ABUロボコン ロゴ" width={250} height={125} className="mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-center mb-4">ABUロボコン</h3>
               <p className="text-left leading-relaxed text-gray-600">
                 アジア・太平洋地域の放送局が共同で制作する国際的なロボットコンテストです。各国の国内大会を勝ち抜いた代表チームが一堂に会し、技術力とアイデアを競い合います。私たちにとって、世界一を目指すための最高の舞台です。

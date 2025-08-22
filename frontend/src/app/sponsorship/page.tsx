@@ -1,18 +1,24 @@
 import React from 'react';
 import Image from 'next/image';
 
+// basePathを考慮した画像パスの生成
+const getAssetPath = (path: string) => {
+  // GitHub Pagesの場合、basePathは/Website
+  return `/Website${path}`;
+};
+
 const sponsors = [
-    { name: 'mjs', src: '/assets/sponser/mjs.png' },
-    { name: 'ocs', src: '/assets/sponser/ocs.png' },
-    { name: 'tkf', src: '/assets/sponser/tkf.png' },
-    { name: 'systecom', src: '/assets/sponser/systecom.png' },
-    { name: 'justem', src: '/assets/sponser/justem.png' },
-    { name: 'fieldworks', src: '/assets/sponser/fieldworks.png' },
-    { name: 'unext', src: '/assets/sponser/unext.png' },
-    { name: 'sprix', src: '/assets/sponser/sprix.png' },
-    { name: 'noex', src: '/assets/sponser/noex.png' },
-    { name: 'tdk', src: '/assets/sponser/tdk.png' },
-    { name: 'makita', src: '/assets/sponser/makita.png' }
+    { name: 'mjs', src: getAssetPath('/assets/sponser/mjs.png') },
+    { name: 'ocs', src: getAssetPath('/assets/sponser/ocs.png') },
+    { name: 'tkf', src: getAssetPath('/assets/sponser/tkf.png') },
+    { name: 'systecom', src: getAssetPath('/assets/sponser/systecom.png') },
+    { name: 'justem', src: getAssetPath('/assets/sponser/justem.png') },
+    { name: 'fieldworks', src: getAssetPath('/assets/sponser/fieldworks.png') },
+    { name: 'unext', src: getAssetPath('/assets/sponser/unext.png') },
+    { name: 'sprix', src: getAssetPath('/assets/sponser/sprix.png') },
+    { name: 'noex', src: getAssetPath('/assets/sponser/noex.png') },
+    { name: 'tdk', src: getAssetPath('/assets/sponser/tdk.png') },
+    { name: 'makita', src: getAssetPath('/assets/sponser/makita.png') }
 ];
 
 export default function SponsorshipPage() {
