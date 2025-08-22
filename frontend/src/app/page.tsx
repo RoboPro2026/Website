@@ -68,7 +68,7 @@ export default function Home() {
     }
 
     imageUrls.forEach((src) => {
-      const img = new (window as any).Image();
+      const img = new window.Image();
       img.src = src;
       img.onload = () => {
         loadedCount++;
