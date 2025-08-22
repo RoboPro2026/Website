@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const sponsors = [
     { name: 'mjs', src: '/assets/sponser/mjs.png' },
@@ -48,7 +49,12 @@ export default function SponsorshipPage() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center">
                 {sponsors.map(sponsor => (
                   <div key={sponsor.name} className="flex justify-center">
-                    <img src={sponsor.src} alt={`スポンサー ${sponsor.name}`} className="max-h-16" />
+                    <Image 
+                      src={sponsor.src} 
+                      alt={`スポンサー ${sponsor.name}`}
+                      width={150}
+                      height={50}
+                      className="max-h-16 object-contain" />
                   </div>
                 ))}
               </div>

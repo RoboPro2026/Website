@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function Header() {
   return (
@@ -6,15 +7,15 @@ export default function Header() {
       <div className="header-container">
         <div className="header-content">
           <div className="flex items-center">
-            <a href="/">
+            <Link href="/">
               <h1 className="header-title">長岡技科大ロボコンプロジェクト</h1>
-            </a>
+            </Link>
           </div>
           <nav className="nav-menu">
-            <a href="/about" className="nav-link">団体概要</a>
-            <a href="/about#activities" className="nav-link">活動内容</a>
-            <a href="/sponsorship" className="nav-link">スポンサー</a>
-            <a href="/#contact" className="nav-link">お問い合わせ</a>
+            <Link href="/about" className="nav-link">団体概要</Link>
+            <Link href="/activities" className="nav-link">活動内容</Link>
+            <Link href="/sponsorship" className="nav-link">スポンサー</Link>
+            <Link href="/#contact" className="nav-link">お問い合わせ</Link>
           </nav>
         </div>
       </div>

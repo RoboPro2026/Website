@@ -12,13 +12,18 @@ export async function generateStaticParams() {
 }
 
 // ニュース記事を取得する関数（モック）
-function getNewsArticle(id: string) {
+async function getNewsArticle(id: string) {
   const article = MOCK_NEWS_LIST.data.find((item) => item.id.toString() === id);
   return article;
 }
 
-export default function NewsArticlePage({ params }: { params: { id: string } }) {
-  const article = getNewsArticle(params.id);
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function NewsArticlePage({ params }: Props) {
+  const article = await getNewsArticle(params.id);
 
   if (!article) {
     notFound();

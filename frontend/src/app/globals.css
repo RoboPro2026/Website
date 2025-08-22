@@ -332,3 +332,66 @@ body {
   color: #ffffff;
   text-decoration: underline;
 }
+
+/* Dynamic Content Section Styles */
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.sliding-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%; /* Image count * 2 */
+  height: 100%;
+  display: flex;
+  animation: slide 60s linear infinite;
+  z-index: 1;
+}
+
+.sliding-background-reverse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  display: flex;
+  animation: slide-reverse 60s linear infinite;
+  z-index: 1;
+}
+
+.slide-image {
+  width: 25%; /* 100 / image count */
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slide-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
