@@ -16,9 +16,34 @@ const imageUrls = [
   // ... 他の主要な画像もここに追加
 ];
 
+const sponsors = [
+  { src: '/assets/sponser/tdk.png', alt: 'TDK', width: 150, height: 50 },
+  { src: '/assets/sponser/makita.png', alt: 'Makita', width: 150, height: 50 },
+  { src: '/assets/sponser/mjs.png', alt: 'MJS', width: 150, height: 50 },
+  { src: '/assets/sponser/unext.png', alt: 'U-NEXT', width: 150, height: 50 },
+  { src: '/assets/sponser/sprix.png', alt: 'Sprix', width: 150, height: 50 },
+  { src: '/assets/sponser/justem.png', alt: 'Justem', width: 120, height: 50 },
+  { src: '/assets/sponser/fieldworks.png', alt: 'Fieldworks', width: 150, height: 50 },
+  { src: '/assets/sponser/noex.png', alt: 'Noex', width: 150, height: 50 },
+  { src: '/assets/sponser/tkf.png', alt: 'TKF', width: 150, height: 50 },
+  { src: '/assets/sponser/systecom.png', alt: 'Systecom', width: 150, height: 50 },
+  { src: '/assets/sponser/ocs.png', alt: 'OCS', width: 150, height: 50 },
+];
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [shuffledSponsors, setShuffledSponsors] = useState<typeof sponsors>([]);
+
+  useEffect(() => {
+    // Fisher-Yates shuffle algorithm
+    const shuffled = [...sponsors];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    setShuffledSponsors(shuffled);
+  }, []);
 
   useEffect(() => {
     const visited = sessionStorage.getItem("visited");
@@ -128,52 +153,26 @@ export default function Home() {
 
           {/* その他の活動 */}
           <div className="mt-24 text-center">
-            <h3 className="text-3xl font-bold text-stone-800 mb-4">技術を高め、仲間と繋がる</h3>
+            <h3 className="text-3xl font-bold text-stone-800 mb-4">世界を目指す挑戦と、地域との繋がり</h3>
             <p className="text-stone-600 max-w-2xl mx-auto">
-              ロボット製作だけじゃない。私たちは、イベントや交流会を通じて、メンバー同士の絆を深め、共に成長していくことを大切にしています。
+              NHK学生ロボコンでの勝利、そしてその先のABUロボコンでの世界一を目指す挑戦。それと同時に、地域社会との交流も大切にしています。
             </p>
           </div>
 
           <div className="mt-12 grid md:grid-cols-2 gap-8">
             <div className="activity-card">
-              <h4 className="activity-title">イベント・交流</h4>
+              <h4 className="activity-title">大会への挑戦</h4>
               <p className="activity-text">
-                新歓イベントや技術交流会、合宿なども開催し、メンバー同士の親睦を深めています。
+                毎年設定される困難な課題に対し、独創的なアイデアと技術力で立ち向かいます。目標はただ一つ、世界一です。
               </p>
-              <ul className="activity-list">
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>新歓イベント</span>
-                </li>
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>技術交流会</span>
-                </li>
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>合宿</span>
-                </li>
-              </ul>
+              <a href="/activities" className="text-orange-600 hover:underline mt-4 inline-block">活動詳細を見る →</a>
             </div>
             <div className="activity-card">
-              <h4 className="activity-title">技術勉強会</h4>
+              <h4 className="activity-title">地域との繋がり</h4>
               <p className="activity-text">
-                各班の専門知識を共有する勉強会を定期的に開催。学部や専門分野の垣根を越えて、幅広い技術を学び合います。
+                ものづくりの楽しさを伝えるため、地域のイベント参加や企業との交流も積極的に行っています。
               </p>
-              <ul className="activity-list">
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>CAD講習会</span>
-                </li>
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>プログラミング勉強会</span>
-                </li>
-                <li className="activity-item">
-                  <span className="activity-bullet">•</span>
-                  <span>回路設計入門</span>
-                </li>
-              </ul>
+               <a href="/activities" className="text-orange-600 hover:underline mt-4 inline-block">活動詳細を見る →</a>
             </div>
           </div>
         </div>
@@ -184,6 +183,35 @@ export default function Home() {
 
       {/* ブログ */}
       <BlogSection />
+
+      {/* スポンサーセクション */}
+      <section id="sponsors" className="contact-section bg-white">
+        <div className="contact-container">
+          <h2 className="section-title text-gray-900">スポンサー</h2>
+          <p className="section-subtitle contact-subtitle">
+            私たちの活動は、多くの企業様からのご支援によって支えられています。
+          </p>
+          <div className="mt-12 bg-white p-8 rounded-lg shadow-md">
+            <div className="flex flex-wrap gap-x-12 gap-y-8 justify-center items-center">
+              {shuffledSponsors.map((sponsor) => (
+                <Image
+                  key={sponsor.src}
+                  src={sponsor.src}
+                  alt={sponsor.alt}
+                  width={sponsor.width}
+                  height={sponsor.height}
+                  className="object-contain"
+                />
+              ))}
+            </div>
+          </div>
+          <div className="text-center mt-12">
+            <a href="/sponsorship" className="contact-button">
+              スポンサーシップの詳細を見る
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* お問い合わせ */}
       <section id="contact" className="contact-section">

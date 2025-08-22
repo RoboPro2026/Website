@@ -1,5 +1,29 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+const achievements = [
+  { year: '2020', details: ['オンライン！学ロボFESTIVALに参加。パナソニックシステムソリューションズジャパン株式会社様より特別賞を受賞。'] },
+  { year: '2019', details: ['NHK学生ロボコン2019にてベスト8およびアイディア賞を受賞。', '東海地区交流ロボコンにて第3位入賞。', 'SummerRobotContestにて第3位入賞。'] },
+  { year: '2018', details: ['NHK学生ロボコン2018に参加。', '東海地区交流ロボコンに参加。', 'SummerRobotContestにて優勝。'] },
+  { year: '2017', details: ['NHK学生ロボコン2017に参加。'] },
+  { year: '2016', details: ['NHK学生ロボコン2016にシード校として参加し、ベスト8。'] },
+  { year: '2015', details: ['NHK大学ロボコン2015にてベスト16及び特別賞(トヨタ自動車株式会社様)を受賞。', '豪技！長岡ものづくりフェアに出展。'] },
+  { year: '2014', details: ['NHK大学ロボコン2014にて準優勝及び特別賞(ローム株式会社様)を受賞。'] },
+  { year: '2013', details: ['NHK大学ロボコン2013にてベスト4、技術賞、特別賞(株式会社ナガセ様)を受賞。', '技大祭にてロボコン競技をデモンストレーション。'] },
+  { year: '2012', details: ['第2回キャチロボバトルコンテストにて優勝。', 'NHK大学ロボコン2012にてベスト4及びアイディア賞を受賞。'] },
+  { year: '2011', details: ['NHK大学ロボコン2011にて準優勝。'] },
+  { year: '2010', details: ['NHK大学ロボコン2010にてベスト8。'] },
+  { year: '2009', details: ['NHK大学ロボコン2009にてベスト8。'] },
+  { year: '2008', details: ['NHK大学ロボコン2008にてベスト8。'] },
+  { year: '2007', details: ['NHK大学ロボコン2007にて技術賞を受賞。'] },
+  { year: '2006', details: ['NHK大学ロボコン2006にて特別賞(松下電器産業株式会社様)を受賞。'] },
+  { year: '2005', details: ['第5回レスキューロボットコンテストにてレスキュー工学大賞、計測自動制御学会賞を受賞。'] },
+  { year: '2004', details: ['NHK学ロボコン2004にて技術賞、特別賞(トヨタ自動車株式会社様)を受賞。'] },
+  { year: '2003', details: ['NHK大学ロボコンに参加。'] },
+  { year: '2002', details: ['第2回レスキューロボットコンテストにてグッドコンセプト賞を受賞。'] },
+  { year: '2001', details: ['NHK大学ロボコン2002にて技術賞を受賞。'] },
+];
 
 export default function AboutPage() {
   return (
@@ -34,7 +58,7 @@ export default function AboutPage() {
           {/* 活動内容 */}
           <section id="activities" className="mb-24">
             <h2 className="section-title text-gray-900">活動内容</h2>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
               <div className="activity-card-about">
                 <h3 className="text-2xl font-bold mb-4">ロボット製作</h3>
                 <p>
@@ -47,6 +71,11 @@ export default function AboutPage() {
                   活動は主に「機械班」「回路班」「制御班」「運営班」の4つの班に分かれて行われます。各班が専門性を高めつつ、密に連携を取ることで、複雑なロボットシステムを完成させます。
                 </p>
               </div>
+            </div>
+            <div className="text-center">
+              <Link href="/activities" className="contact-button">
+                各班の活動や代表挨拶を見る
+              </Link>
             </div>
           </section>
 
@@ -64,7 +93,7 @@ export default function AboutPage() {
               <div className="mb-12">
                 <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
                 <h3 className="text-xl font-bold text-gray-900">6月: NHK学生ロボコン</h3>
-                <p className="text-gray-700">一年間の集大成。全国の大学と技術を競い合います。</p>
+                <p className="text-gray-700">一年間の集大成。全国の大学とアイディア・技術を競い合います。</p>
               </div>
               {/* イベント3 */}
               <div className="mb-12">
@@ -75,7 +104,7 @@ export default function AboutPage() {
                {/* イベント4 */}
               <div className="mb-12">
                 <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
-                <h3 className="text-xl font-bold text-gray-900">9月: 技術交流会・合宿</h3>
+                <h3 className="text-xl font-bold text-gray-900">9月: 東海地区交流ロボコンなどの大会への参加</h3>
                 <p className="text-gray-700">新体制でのロボット製作が始まります。技術共有やチームビルディングを行います。</p>
               </div>
               {/* イベント5 */}
@@ -84,6 +113,23 @@ export default function AboutPage() {
                  <h3 className="text-xl font-bold text-gray-900">通年: 技術勉強会</h3>
                 <p className="text-gray-700">CAD、プログラミング、回路設計など、各班の専門知識を共有する勉強会を定期的に開催します。</p>
               </div>
+            </div>
+          </section>
+
+          {/* 活動実績 */}
+          <section id="achievements" className="mb-24">
+            <h2 className="section-title text-gray-900">活動実績</h2>
+            <div className="space-y-12">
+              {achievements.map((achievement) => (
+                <div key={achievement.year}>
+                  <h3 className="text-3xl font-bold text-orange-600 mb-6 pl-4 border-l-4 border-orange-500">{achievement.year}年</h3>
+                  <ul className="list-disc pl-12 space-y-2 text-gray-700">
+                    {achievement.details.map((detail, index) => (
+                      <li key={index}>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </section>
 

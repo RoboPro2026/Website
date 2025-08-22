@@ -12,7 +12,7 @@ export default function Header() {
           </div>
           <nav className="nav-menu">
             <a href="/about" className="nav-link">団体概要</a>
-            <a href="/about#activities" className="nav-link">活動内容</a>
+            <a href="/activities" className="nav-link">活動内容</a>
             <a href="/sponsorship" className="nav-link">スポンサー</a>
             <a href="/#contact" className="nav-link">お問い合わせ</a>
           </nav>
