@@ -1,5 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig() || {};
+const basePath = publicRuntimeConfig?.basePath || '';
 
 const representative = {
   name: "五十嵐 幸多",
@@ -18,7 +22,6 @@ const communityImages = [
   '/assets/home/meeting.png',
   '/assets/home/hoikuen1.png',
   '/assets/home/event1.png',
-  '/assets/home/hero.png'
 ];
 
 const teams = [
@@ -79,7 +82,7 @@ export default function ActivitiesPage() {
         <section className="relative w-full h-[70vh] overflow-hidden bg-gray-900">
           <div className="sliding-background">
             {[...challengeImages, ...challengeImages].map((src, index) => (
-              <div key={index} className="slide-image" style={{ backgroundImage: `url(${src})` }} />
+              <div key={index} className="slide-image" style={{ backgroundImage: `url(${basePath}${src})` }} />
             ))}
           </div>
           <div className="content-overlay">
@@ -95,7 +98,7 @@ export default function ActivitiesPage() {
         <section className="relative w-full h-[70vh] overflow-hidden bg-gray-900">
           <div className="sliding-background-reverse">
             {[...communityImages, ...communityImages].map((src, index) => (
-              <div key={index} className="slide-image" style={{ backgroundImage: `url(${src})` }} />
+              <div key={index} className="slide-image" style={{ backgroundImage: `url(${basePath}${src})` }} />
             ))}
           </div>
           <div className="content-overlay">
