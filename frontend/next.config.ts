@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   publicRuntimeConfig: {
     basePath: isProd ? '/Website' : '',
   },
+  env: {
+    BASE_PATH: isProd ? '/Website' : '',
+  },
   images: {
     unoptimized: true,
   },

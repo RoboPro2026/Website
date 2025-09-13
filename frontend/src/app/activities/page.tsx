@@ -1,9 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import getConfig from 'next/config';
 
-const { publicRuntimeConfig } = getConfig() || {};
-const basePath = publicRuntimeConfig?.basePath || '';
+const basePath = process.env.BASE_PATH || '';
 
 const representative = {
   name: "五十嵐 幸多",
