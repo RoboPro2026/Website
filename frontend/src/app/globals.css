@@ -340,7 +340,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(0.5px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -353,7 +354,6 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200%; /* Image count * 2 */
   height: 100%;
   display: flex;
   animation: slide 60s linear infinite;
@@ -364,7 +364,6 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200%;
   height: 100%;
   display: flex;
   animation: slide-reverse 60s linear infinite;
@@ -372,10 +371,11 @@ body {
 }
 
 .slide-image {
-  width: 25%; /* 100 / image count */
+  width: 70vh;
   height: 100%;
   background-size: cover;
   background-position: center;
+  flex-shrink: 0;
 }
 
 @keyframes slide {

@@ -2,24 +2,17 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import NewsSection from "@/components/sections/NewsSection";
 import BlogSection from "@/components/sections/BlogSection";
 import LoadingScreen from "@/components/LoadingScreen";
 
-// basePathを考慮した画像パスの生成
-const getAssetPath = (path: string) => {
-  // GitHub Pagesの場合、basePathは/Website
-  return `/Website${path}`;
-};
-
 // 読み込む画像のリスト
 const imageUrls = [
-  getAssetPath('/assets/home/hero.png'),
-  getAssetPath('/assets/home/denshi.png'),
-  getAssetPath('/assets/news/robocon2024.jpg'),
-  getAssetPath('/assets/news/welcome.jpg'),
-  getAssetPath('/assets/news/sponsor.jpg'),
+  '/assets/home/hero.png',
+  '/assets/home/denshi.png',
+  '/assets/news/robocon2024.jpg',
+  '/assets/news/welcome.jpg',
+  '/assets/news/sponsor.jpg',
   // ... 他の主要な画像もここに追加
 ];
 
@@ -31,17 +24,17 @@ interface Sponsor {
 }
 
 const sponsors: Sponsor[] = [
-  { src: getAssetPath('/assets/sponser/tdk.png'), alt: 'TDK', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/makita.png'), alt: 'Makita', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/mjs.png'), alt: 'MJS', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/unext.png'), alt: 'U-NEXT', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/sprix.png'), alt: 'Sprix', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/justem.png'), alt: 'Justem', width: 120, height: 50 },
-  { src: getAssetPath('/assets/sponser/fieldworks.png'), alt: 'Fieldworks', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/noex.png'), alt: 'Noex', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/tkf.png'), alt: 'TKF', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/systecom.png'), alt: 'Systecom', width: 150, height: 50 },
-  { src: getAssetPath('/assets/sponser/ocs.png'), alt: 'OCS', width: 150, height: 50 },
+  { src: '/assets/sponser/tdk.png', alt: 'TDK', width: 150, height: 50 },
+  { src: '/assets/sponser/makita.png', alt: 'Makita', width: 150, height: 50 },
+  { src: '/assets/sponser/mjs.png', alt: 'MJS', width: 150, height: 50 },
+  { src: '/assets/sponser/unext.png', alt: 'U-NEXT', width: 150, height: 50 },
+  { src: '/assets/sponser/sprix.png', alt: 'Sprix', width: 150, height: 50 },
+  { src: '/assets/sponser/justem.png', alt: 'Justem', width: 120, height: 50 },
+  { src: '/assets/sponser/fieldworks.png', alt: 'Fieldworks', width: 150, height: 50 },
+  { src: '/assets/sponser/noex.png', alt: 'Noex', width: 150, height: 50 },
+  { src: '/assets/sponser/tkf.png', alt: 'TKF', width: 150, height: 50 },
+  { src: '/assets/sponser/systecom.png', alt: 'Systecom', width: 150, height: 50 },
+  { src: '/assets/sponser/ocs.png', alt: 'OCS', width: 150, height: 50 },
 ];
 
 export default function Home() {
@@ -110,7 +103,7 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-bg" style={{clipPath: 'inset(0 0 0 0)'}}>
           <Image
-            src={getAssetPath('/assets/home/hero.png')}
+            src="/assets/home/hero.png"
             alt="サークル活動の様子"
             fill
             className="object-cover w-full h-full"
@@ -144,14 +137,14 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {
               [
-                { name: '機械班', description: 'ロボットの設計・製作を担当。機械加工やCAD設計を通じて、ロボットの骨格を作り上げます。', imgSrc: getAssetPath('/assets/home/hero.png') },
-                { name: '回路班', description: '電子回路の設計・製作を担当。基板設計や配線を通じて、ロボットの神経系を作り上げます。', imgSrc: getAssetPath('/assets/home/denshi.png') },
-                { name: '制御班', description: 'プログラミング・制御を担当。マイコン制御やソフトウェア開発を通じて、ロボットの頭脳を作り上げます。', imgSrc: getAssetPath('/assets/home/hero.png') },
-                { name: '運営班', description: 'サークルの運営・広報を担当。イベント企画や広報活動を通じて、チーム全体を支えます。', imgSrc: getAssetPath('/assets/home/hero.png') }
+                { name: '機械班', description: 'ロボットの設計・製作を担当。機械加工やCAD設計を通じて、ロボットの骨格を作り上げます。', imgSrc: '/assets/home/hero.png' },
+                { name: '回路班', description: '電子回路の設計・製作を担当。基板設計や配線を通じて、ロボットの神経系を作り上げます。', imgSrc: '/assets/home/denshi.png' },
+                { name: '制御班', description: 'プログラミング・制御を担当。マイコン制御やソフトウェア開発を通じて、ロボットの頭脳を作り上げます。', imgSrc: '/assets/home/hero.png' },
+                { name: '運営班', description: 'サークルの運営・広報を担当。イベント企画や広報活動を通じて、チーム全体を支えます。', imgSrc: '/assets/home/hero.png' }
               ].map((team) => (
                 <div key={team.name} className="about-card group">
                   <Image src={team.imgSrc} alt={team.name} layout="fill" className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-orange-700/80 via-orange-600/20 to-transparent transition-all duration-300 group-hover:from-orange-700/90 group-hover:via-orange-600/50"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-orange-700/80 via-orange-600/20 via-20% to-transparent transition-all duration-300 group-hover:from-orange-700/90 group-hover:via-orange-600/50 group-hover:via-40%"></div>
                   <div className="relative flex flex-col justify-end h-full p-6 text-white">
                     <h3 className="text-2xl font-bold tracking-tight">{team.name}</h3>
                     <div className="mt-2 overflow-hidden">

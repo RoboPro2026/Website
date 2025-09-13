@@ -3,12 +3,6 @@ import Image from 'next/image';
 import { MOCK_NEWS_LIST } from '@/lib/mock-data';
 import { notFound } from 'next/navigation';
 
-// basePathを考慮した画像パスの生成
-const getAssetPath = (path: string) => {
-  // GitHub Pagesの場合、basePathは/Website
-  return `/Website${path}`;
-};
-
 // generateStaticParams を使って静的にパスを生成
 export async function generateStaticParams() {
   const news = MOCK_NEWS_LIST.data;
@@ -36,7 +30,7 @@ export default async function NewsArticlePage({ params }: Props) {
   }
 
   const { title, content, date, image, category } = article.attributes;
-  const imageUrl = image.data?.attributes.url || getAssetPath('/assets/home/hero.png');
+  const imageUrl = image.data?.attributes.url || '/assets/home/hero.png';
 
   return (
     <div className="min-h-screen bg-white">

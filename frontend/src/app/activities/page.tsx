@@ -1,52 +1,61 @@
 import React from 'react';
 import Image from 'next/image';
 
-// basePathを考慮した画像パスの生成
-const getAssetPath = (path: string) => {
-  // GitHub Pagesの場合、basePathは/Website
-  return `/Website${path}`;
-};
-
 const representative = {
   name: "五十嵐 幸多",
   title: "代表",
   greeting: `いい感じのこめんと(ちょっと長め)。`,
-  imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
+  imageUrl: "/assets/home/hero.png" // Placeholder
 };
 
 const challengeImages = [
-  getAssetPath('/assets/news/robocon2024.jpg'),
-  getAssetPath('/assets/home/hero.png'),
-  getAssetPath('/assets/news/sponsor.jpg'),
-  getAssetPath('/assets/home/hero.png')
+  '/assets/home/robo2.png',
+  '/assets/home/robo1.png',
+  '/assets/home/robo4.png',
+  '/assets/home/robo5.png',
 ];
 const communityImages = [
-  getAssetPath('/assets/news/welcome.jpg'),
-  getAssetPath('/assets/home/hero.png'),
-  getAssetPath('/assets/sponser/tdk.png'),
-  getAssetPath('/assets/home/hero.png')
+  '/assets/home/meeting.png',
+  '/assets/home/hoikuen1.png',
+  '/assets/home/event1.png',
+  '/assets/home/hero.png'
 ];
 
 const teams = [
   {
     name: '機械班',
     description: 'ロボットの"身体"を作るエキスパート。3DCADによる設計から、工作機械を駆使した部品製作まで、アイデアを物理的な形にする役割を担います。',
-    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
+    imageUrl: "/assets/home/hero.png" // Placeholder
   },
   {
     name: '回路班',
     description: 'ロボットの"神経"を司る電子回路のプロフェッショナル。モータードライバやセンサー基板の設計・製作を行い、ロボットに命を吹き込みます。',
-    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
+    imageUrl: "/assets/home/denshi.png" // Placeholder
   },
   {
     name: '制御班',
     description: 'ロボットの"頭脳"を開発するプログラマー集団。マイコンのプログラミングやAIによる画像認識など、ソフトウェアでロボットの動きを制御します。',
-    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
+    imageUrl: "/assets/home/seigyo.png" // Placeholder
   },
   {
     name: '運営班',
     description: 'プロジェクト全体を支える縁の下の力持ち。スポンサー渉外、広報活動、会計管理など、円滑なプロジェクト運営に不可欠な役割を担います。',
-    imageUrl: getAssetPath("/assets/home/hero.png") // Placeholder
+    imageUrl: "/assets/home/syougaikatsudou.png" // Placeholder
+  }
+];
+
+const contests = [
+  {
+    name: 'NHK学生ロボコン',
+    description: 'NHKが主催する、全国の大学が参加するロボットコンテストです。毎年異なる競技課題が設定され、学生たちの独創的なアイデアと技術力が試されます。この大会で優勝したチームが、日本代表としてABUロボコンへの出場権を得ます。',
+    imageUrl: "/assets/home/nhk.jpg",
+    alt: "NHK学生ロボコン ロゴ",
+  },
+  {
+    name: 'ABUロボコン',
+    description: 'アジア・太平洋地域の放送局が共同で制作する国際的なロボットコンテストです。各国の国内大会を勝ち抜いた代表チームが一堂に会し、技術力とアイデアを競い合います。私たちにとって、世界一を目指すための最高の舞台です。',
+    imageUrl: "/assets/home/hero.png",
+    alt: "ABUロボコン ロゴ",
   }
 ];
 
@@ -77,7 +86,7 @@ export default function ActivitiesPage() {
             <div className="max-w-3xl text-center">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">大会への挑戦</h2>
               <p className="text-lg md:text-xl leading-relaxed">
-                私たちの活動の中核は、NHK学生ロボコンと、その先にあるABUアジア・太平洋ロボットコンテストでの優勝です。毎年変わる競技課題に対し、独創的なアイデアと確かな技術力で挑戦しています。
+                私たちの活動の中核は、NHK学生ロボコンと、その先にあるABUアジア・太平洋ロボットコンテストでの優勝です。毎年変わる競技課題に対し、アイデアと技術力で挑戦しています。
               </p>
             </div>
           </div>
@@ -86,11 +95,11 @@ export default function ActivitiesPage() {
         <section className="relative w-full h-[70vh] overflow-hidden bg-gray-900">
           <div className="sliding-background-reverse">
             {[...communityImages, ...communityImages].map((src, index) => (
-              <div key={index} className="slide-image-reverse" style={{ backgroundImage: `url(${src})` }} />
+              <div key={index} className="slide-image" style={{ backgroundImage: `url(${src})` }} />
             ))}
           </div>
-          <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
-            <div className="text-center text-white px-4 md:px-8 lg:px-16 max-w-4xl">
+          <div className="content-overlay">
+            <div className="max-w-4xl text-center">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">地域との繋がり</h2>
               <p className="text-lg md:text-xl leading-relaxed">
                 私たちは、ものづくりの楽しさを地域社会と分かち合う活動にも力を入れています。地元の企業との交流会を通じて技術的な知見を深めたり、幼稚園の卒園行事に参加して、子どもたちにロボットに触れる機会を提供したりしています。
@@ -100,21 +109,21 @@ export default function ActivitiesPage() {
         </section>
 
         <div className="py-20 bg-stone-50">
-          <div className="max-w-5xl mx-auto px-4 md:px-8 lg:px-16 grid md:grid-cols-2 gap-12 items-start">
-            <div className="bg-white rounded-lg shadow-xl p-8 transition-transform duration-300 hover:-translate-y-2">
-              <Image src={getAssetPath("/assets/home/hero.png")} alt="NHK学生ロボコン ロゴ" width={250} height={125} className="mx-auto mb-6" />
-              <h3 className="text-2xl font-bold text-center mb-4">NHK学生ロボコン</h3>
-              <p className="text-left leading-relaxed text-gray-600">
-                NHKが主催する、全国の大学が参加するロボットコンテストです。毎年異なる競技課題が設定され、学生たちの独創的なアイデアと技術力が試されます。この大会で優勝したチームが、日本代表としてABUロボコンへの出場権を得ます。
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow-xl p-8 transition-transform duration-300 hover:-translate-y-2">
-              <Image src={getAssetPath("/assets/home/hero.png")} alt="ABUロボコン ロゴ" width={250} height={125} className="mx-auto mb-6" />
-              <h3 className="text-2xl font-bold text-center mb-4">ABUロボコン</h3>
-              <p className="text-left leading-relaxed text-gray-600">
-                アジア・太平洋地域の放送局が共同で制作する国際的なロボットコンテストです。各国の国内大会を勝ち抜いた代表チームが一堂に会し、技術力とアイデアを競い合います。私たちにとって、世界一を目指すための最高の舞台です。
-              </p>
-            </div>
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            <h2 className="text-4xl font-bold text-center">
+              目標とする大会
+            </h2>
+            {contests.map((contest, index) => (
+              <div key={contest.name} className={`flex flex-col gap-12 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+                <div className="md:w-1/2">
+                  <Image src={contest.imageUrl} alt={contest.alt} width={500} height={300} className="rounded-lg shadow-xl object-cover w-full" />
+                </div>
+                <div className="md:w-1/2">
+                  <h3 className="text-3xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-orange-500 inline-block">{contest.name}</h3>
+                  <p className="text-lg leading-relaxed text-gray-600">{contest.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
