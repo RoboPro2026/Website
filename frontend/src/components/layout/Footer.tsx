@@ -1,7 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import getConfig from 'next/config';
 import { MOCK_NEWS_LIST } from '@/lib/mock-data';
+
+const { publicRuntimeConfig } = getConfig() || {};
+const basePath = publicRuntimeConfig?.basePath || '';
 
 const SocialIcon = ({ href, children }: { href: string, children: React.ReactNode }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
@@ -20,7 +24,7 @@ export default function Footer() {
           {/* Column 1: Logo and Social */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <Image src="/assets/general/logo-w.png" alt="ロボコンプロジェクト ロゴ" width={180} height={40} className="object-contain" />
+              <Image src={`${basePath}/assets/general/logo-w.png`} alt="ロボコンプロジェクト ロゴ" width={180} height={40} className="object-contain" />
             </Link>
             <div className="flex space-x-4">
               <SocialIcon href="#">
