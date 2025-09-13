@@ -1,9 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import getConfig from 'next/config';
-
-const { publicRuntimeConfig } = getConfig() || {};
-const basePath = publicRuntimeConfig?.basePath || '';
 
 const sponsors = [
     { name: 'mjs', src: '/assets/sponser/mjs.png' },
@@ -54,7 +50,7 @@ export default function SponsorshipPage() {
                 {sponsors.map(sponsor => (
                   <div key={sponsor.name} className="flex justify-center">
                     <Image 
-                      src={`${basePath}${sponsor.src}`} 
+                      src={sponsor.src} 
                       alt={`スポンサー ${sponsor.name}`}
                       width={150}
                       height={50}
