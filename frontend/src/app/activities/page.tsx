@@ -1,13 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 
-const basePath = process.env.BASE_PATH || '';
-
 const representative = {
   name: "五十嵐 幸多",
   title: "代表",
   greeting: `いい感じのこめんと(ちょっと長め)。`,
-  imageUrl: "/assets/home/hero.png" // Placeholder
+  imageUrl: "/assets/home/hero.png"
 };
 
 const challengeImages = [
@@ -26,22 +24,22 @@ const teams = [
   {
     name: '機械班',
     description: 'ロボットの"身体"を作るエキスパート。3DCADによる設計から、工作機械を駆使した部品製作まで、アイデアを物理的な形にする役割を担います。',
-    imageUrl: "/assets/home/hero.png" // Placeholder
+    imageUrl: "/assets/home/hero.png"
   },
   {
     name: '回路班',
     description: 'ロボットの"神経"を司る電子回路のプロフェッショナル。モータードライバやセンサー基板の設計・製作を行い、ロボットに命を吹き込みます。',
-    imageUrl: "/assets/home/denshi.png" // Placeholder
+    imageUrl: "/assets/home/denshi.png"
   },
   {
     name: '制御班',
     description: 'ロボットの"頭脳"を開発するプログラマー集団。マイコンのプログラミングやAIによる画像認識など、ソフトウェアでロボットの動きを制御します。',
-    imageUrl: "/assets/home/seigyo.png" // Placeholder
+    imageUrl: "/assets/home/seigyo.png"
   },
   {
     name: '運営班',
     description: 'プロジェクト全体を支える縁の下の力持ち。スポンサー渉外、広報活動、会計管理など、円滑なプロジェクト運営に不可欠な役割を担います。',
-    imageUrl: "/assets/home/syougaikatsudou.png" // Placeholder
+    imageUrl: "/assets/home/syougaikatsudou.png"
   }
 ];
 
@@ -55,7 +53,7 @@ const contests = [
   {
     name: 'ABUロボコン',
     description: 'アジア・太平洋地域の放送局が共同で制作する国際的なロボットコンテストです。各国の国内大会を勝ち抜いた代表チームが一堂に会し、技術力とアイデアを競い合います。私たちにとって、世界一を目指すための最高の舞台です。',
-    imageUrl: "/assets/home/hero.png",
+    imageUrl: "/assets/home/abu.png",
     alt: "ABUロボコン ロゴ",
   }
 ];
@@ -80,7 +78,7 @@ export default function ActivitiesPage() {
         <section className="relative w-full h-[70vh] overflow-hidden bg-gray-900">
           <div className="sliding-background">
             {[...challengeImages, ...challengeImages].map((src, index) => (
-              <div key={index} className="slide-image" style={{ backgroundImage: `url(${basePath}${src})` }} />
+              <div key={index} className="slide-image" style={{ backgroundImage: `url(${src})` }} />
             ))}
           </div>
           <div className="content-overlay">
@@ -96,7 +94,7 @@ export default function ActivitiesPage() {
         <section className="relative w-full h-[70vh] overflow-hidden bg-gray-900">
           <div className="sliding-background-reverse">
             {[...communityImages, ...communityImages].map((src, index) => (
-              <div key={index} className="slide-image" style={{ backgroundImage: `url(${basePath}${src})` }} />
+              <div key={index} className="slide-image" style={{ backgroundImage: `url(${src})` }} />
             ))}
           </div>
           <div className="content-overlay">

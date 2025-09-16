@@ -1,3 +1,5 @@
+import { Asset, Entry, EntryFields, EntrySkeletonType } from 'contentful';
+
 // StrapiのAPIレスポンスの基本構造
 interface StrapiMeta {
   pagination: {
@@ -88,4 +90,46 @@ export interface StrapiCollectionResponse<T> {
 export interface StrapiSingleResponse<T> {
   data: StrapiDataItem<T>;
   meta: Record<string, never>;
+}
+
+// --- Contentful ---
+export interface ContentfulImage {
+  fields: {
+    title: string;
+    description: string;
+    file: {
+      url: string;
+      details: {
+        size: number;
+        image: {
+          width: number;
+          height: number;
+        };
+      };
+      fileName: string;
+      contentType: string;
+    };
+  };
+}
+
+
+// News記事の型定義 (Contentful)
+export interface NewsEntryFields {
+  title: EntryFields.Text;
+  context: EntryFields.Text;
+  content?: EntryFields.RichText; // 詳細記事用のリッチテキストフィールド
+  date: EntryFields.Date;
+  image: Asset;
+}
+
+export interface NewsEntry extends EntrySkeletonType {
+  contentTypeId: 'clubNews';
+  fields: NewsEntryFields;
+}
+
+// Blog記事の型定義 (Contentful)
+export interface BlogEntry {
+  title: EntryFields.Text;
+  content: EntryFields.RichText;
+  excerpt: EntryFields.Text;
 }

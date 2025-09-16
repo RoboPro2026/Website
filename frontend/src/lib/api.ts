@@ -1,4 +1,5 @@
 import qs from 'qs';
+import { contentfulClient } from './contentful';
 
 /**
  * APIのベースURLを取得します。
@@ -41,5 +42,38 @@ export async function fetchAPI(path: string, urlParamsObject = {}, options = {})
   } catch (error) {
     console.error(error);
     throw new Error(`An error occurred please try again`);
+  }
+}
+
+/**
+ * Contentfulからデータを取得するための共通関数
+ * @param contentType コンテンツタイプID
+ * @param query クエリパラメータ
+ * @returns 取得したデータ
+ */
+export async function fetchContentful(contentType: string, query?: object) {
+  try {
+    const entries = await contentfulClient.getEntries({
+      content_type: contentType,
+      ...query,
+    });
+    return entries;
+  } catch (error) {
+    console.error(error);
+    throw new Error(`An error occurred while fetching from Contentful`);
+  }
+}
+
+/**
+ * Contentfulから全てのタグを取得する
+ * @returns 取得したタグのリスト
+ */
+export async function fetchAllTags() {
+  try {
+    const tags = await contentfulClient.getTags();
+    return tags.items;
+  } catch (error) {
+    console.error(error);
+    throw new Error(`An error occurred while fetching tags from Contentful`);
   }
 }

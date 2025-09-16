@@ -2,6 +2,9 @@ import React from "react";
 import Link from "next/link";
 
 const achievements = [
+  { year: '2025', details: ['東海地区交流ロボコンにてRohm株式会社様より特別賞受賞。'] },
+  { year: '2024', details: ['NHK学生ロボコン2024にてベスト8およびアイディア賞を受賞。'] },
+  { year: '2021', details: ['NHK学生ロボコン2021にて優勝およびABUロボコン出場。'] },
   { year: '2020', details: ['オンライン！学ロボFESTIVALに参加。パナソニックシステムソリューションズジャパン株式会社様より特別賞を受賞。'] },
   { year: '2019', details: ['NHK学生ロボコン2019にてベスト8およびアイディア賞を受賞。', '東海地区交流ロボコンにて第3位入賞。', 'SummerRobotContestにて第3位入賞。'] },
   { year: '2018', details: ['NHK学生ロボコン2018に参加。', '東海地区交流ロボコンに参加。', 'SummerRobotContestにて優勝。'] },
@@ -9,7 +12,7 @@ const achievements = [
   { year: '2016', details: ['NHK学生ロボコン2016にシード校として参加し、ベスト8。'] },
   { year: '2015', details: ['NHK大学ロボコン2015にてベスト16及び特別賞(トヨタ自動車株式会社様)を受賞。', '豪技！長岡ものづくりフェアに出展。'] },
   { year: '2014', details: ['NHK大学ロボコン2014にて準優勝及び特別賞(ローム株式会社様)を受賞。'] },
-  { year: '2013', details: ['NHK大学ロボコン2013にてベスト4、技術賞、特別賞(株式会社ナガセ様)を受賞。', '技大祭にてロボコン競技をデモンストレーション。'] },
+  { year: '2013', details: ['NHK大学ロボコン2013にてベスト4、技術賞、特別賞(株式会社ナガセ様)を受賞。'] },
   { year: '2012', details: ['第2回キャチロボバトルコンテストにて優勝。', 'NHK大学ロボコン2012にてベスト4及びアイディア賞を受賞。'] },
   { year: '2011', details: ['NHK大学ロボコン2011にて準優勝。'] },
   { year: '2010', details: ['NHK大学ロボコン2010にてベスト8。'] },
@@ -105,12 +108,6 @@ export default function AboutPage() {
                 <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
                 <h3 className="text-xl font-bold text-gray-900">9月: 東海地区交流ロボコンなどの大会への参加</h3>
                 <p className="text-gray-700">新体制でのロボット製作が始まります。技術共有やチームビルディングを行います。</p>
-              </div>
-              {/* イベント5 */}
-              <div className="mb-12">
-                <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
-                 <h3 className="text-xl font-bold text-gray-900">通年: 技術勉強会</h3>
-                <p className="text-gray-700">CAD、プログラミング、回路設計など、各班の専門知識を共有する勉強会を定期的に開催します。</p>
               </div>
             </div>
           </section>
