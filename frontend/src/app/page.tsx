@@ -140,18 +140,18 @@ export default function Home() {
             </div>
             <div className="md:w-1/2">
               <p className="text-gray-600 leading-relaxed text-lg">
-                長岡技科大ロボコンプロジェクトは、NHK学生ロボコンやABUロボコンでの優勝を目指し活動する学生団体です。
-                専門知識を活かした「機械」「回路」「制御」「運営」の4つの班が、一つの目標に向かってロボット開発に取り組んでいます。
+                長岡技科大ロボコンプロジェクトは、NHK学生ロボコンでの優勝、そして世界大会であるABUロボコンへの出場を目指して活動しています。
+                「機械」「回路」「制御」「運営」の4つの班に分かれ、それぞれの得意分野を活かして、1台のロボットを作り上げています。
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: '機械班', en: 'Mechanical', description: 'CAD設計と加工技術で、ロボットの強靭な骨格を創造する。', imgSrc: '/assets/home/hero.png' },
-              { name: '回路班', en: 'Electrical', description: '精密な基板設計と配線で、ロボットに命となるエネルギーを吹き込む。', imgSrc: '/assets/home/denshi.png' },
-              { name: '制御班', en: 'Control', description: '高度なプログラミングで、ロボットに知能と正確な動きを与える。', imgSrc: '/assets/home/seigyo.png' },
-              { name: '運営班', en: 'Management', description: '広報やイベント企画を通じて、チームの活動を社会へ発信する。', imgSrc: '/assets/home/syougaikatsudou.png' }
+              { name: '機械班', en: 'Mechanical', description: 'CADでの設計から加工まで。ロボットのカタチを一から作り上げます。', imgSrc: '/assets/home/hero.png' },
+              { name: '回路班', en: 'Electrical', description: '基板設計や配線を行い、ロボットが動くための神経回路を繋ぎます。', imgSrc: '/assets/home/denshi.png' },
+              { name: '制御班', en: 'Control', description: 'プログラミングを駆使して、ロボットに命を吹き込み、自在に操ります。', imgSrc: '/assets/home/seigyo.png' },
+              { name: '運営班', en: 'Management', description: '広報やイベント企画など、ロボット製作以外の面からチームを支えます。', imgSrc: '/assets/home/syougaikatsudou.png' }
             ].map((team, index) => (
               <div key={team.name} className="group relative h-96 rounded-2xl overflow-hidden shadow-lg cursor-pointer">
                 <Image 
@@ -180,8 +180,8 @@ export default function Home() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">活動のフィールド</h2>
             <p className="text-gray-600 text-lg">
-              世界を目指す技術的な挑戦から、地域社会との温かい交流まで。<br className="hidden md:block"/>
-              私たちの活動は多岐にわたります。
+              本気で技術を競い合うロボコンへの挑戦。<br className="hidden md:block"/>
+              そして、ものづくりの楽しさを伝える地域交流。どちらも私たちの大切な活動です。
             </p>
           </div>
 
@@ -199,8 +199,8 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">ロボコンへの挑戦</h3>
               <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
-                NHK学生ロボコン優勝、そしてABUロボコン世界一を目指し、日々技術を研鑽しています。
-                毎年変わる課題に対し、チーム一丸となって独創的なマシンの開発に取り組んでいます。
+                目指すはNHK学生ロボコン優勝、そして世界一。
+                毎年発表されるユニークな課題ルールに対し、チーム全員でアイデアを出し合い、独自のロボットを開発しています。
               </p>
               <Link href="/activities" className="text-orange-600 font-bold hover:text-orange-700 flex items-center gap-2 group">
                 大会実績を見る 
@@ -216,8 +216,8 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4">地域との繋がり</h3>
               <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
-                ものづくりの楽しさを伝えるため、地域のイベント参加や小中学生向けのワークショップを開催しています。
-                技術を通じて地域社会に貢献し、次世代のエンジニアを育成する活動も行っています。
+                「ものづくりって楽しい！」を伝えるために、地域のイベント参加や子ども向けのワークショップを開催しています。
+                技術を通じた交流を大切にしています。
               </p>
               <Link href="/activities" className="text-blue-600 font-bold hover:text-blue-700 flex items-center gap-2 group">
                 地域活動を見る 
@@ -263,7 +263,7 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Supporters</h2>
           <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-            私たちの活動は、多くの企業様・団体様からの温かいご支援によって支えられています。
+            私たちの活動は、多くの企業様・団体様からのご支援によって支えられています。
           </p>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 max-w-6xl mx-auto opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
@@ -293,8 +293,8 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">Join Our Team</h2>
           <p className="text-xl text-stone-300 max-w-2xl mx-auto mb-12">
-            ロボコンプロジェクトでは、共に挑戦する仲間を募集しています。<br/>
-            見学希望、入部希望、その他お問い合わせはこちらから。
+            一緒にロボットを作る仲間を募集しています。<br/>
+            未経験でも大丈夫。見学や入部希望など、お気軽にご連絡ください。
           </p>
           
           <div className="flex flex-col md:flex-row justify-center gap-6">
@@ -308,11 +308,11 @@ export default function Home() {
 
           <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left opacity-80">
             <div className="p-6 border border-white/10 rounded-xl bg-white/5">
-               <h3 className="font-bold text-lg mb-2 text-orange-400">Activity Base</h3>
+               <h3 className="font-bold text-lg mb-2 text-orange-400">活動場所</h3>
                <p>長岡技術科学大学 機械建設棟 2F / セコムホール</p>
             </div>
             <div className="p-6 border border-white/10 rounded-xl bg-white/5">
-               <h3 className="font-bold text-lg mb-2 text-orange-400">Contact</h3>
+               <h3 className="font-bold text-lg mb-2 text-orange-400">連絡先</h3>
                <p>Email: robopro.nut@gmail.com</p>
                <p>Twitter: @nut_robopro</p>
             </div>
