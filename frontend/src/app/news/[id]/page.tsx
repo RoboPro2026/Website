@@ -58,7 +58,8 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default async function NewsArticlePage({ params }: Props) {  const { id } = await params;
+export default async function NewsArticlePage({ params }: Props) {
+  const { id } = await params;
   const article = await getNewsArticle(id);
 
   if (!article) {
@@ -96,7 +97,7 @@ export default async function NewsArticlePage({ params }: Props) {  const { id }
               <Image 
                 src={imageUrl} 
                 alt={title as string} 
-                layout="fill" 
+                fill
                 className="object-cover"
               />
             </div>

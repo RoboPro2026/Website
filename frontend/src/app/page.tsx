@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import NewsSection from "@/components/sections/NewsSection";
 import BlogSection from "@/components/sections/BlogSection";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -13,7 +14,6 @@ const imageUrls = [
   '/assets/news/robocon2024.jpg',
   '/assets/news/welcome.jpg',
   '/assets/news/sponsor.jpg',
-  // ... 他の主要な画像もここに追加
 ];
 
 interface Sponsor {
@@ -43,7 +43,6 @@ export default function Home() {
   const [shuffledSponsors, setShuffledSponsors] = useState<Sponsor[]>([]);
 
   useEffect(() => {
-    // Fisher-Yates shuffle algorithm
     const shuffled = [...sponsors];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -88,20 +87,19 @@ export default function Home() {
       setTimeout(() => {
         setIsLoading(false);
         sessionStorage.setItem("visited", "true");
-      }, 1200); // LoadingScreenのフェードアウトと合わせる
+      }, 1200);
     }
   }, [progress]);
-
 
   if (isLoading) {
     return <LoadingScreen progress={progress} />;
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 fade-in">
+    <div className="min-h-screen bg-stone-50 fade-in selection:bg-orange-200">
       {/* ヒーローセクション */}
-      <section className="hero-section">
-        <div className="hero-bg" style={{clipPath: 'inset(0 0 0 0)'}}>
+      <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/assets/home/hero.png"
             alt="サークル活動の様子"
@@ -109,144 +107,216 @@ export default function Home() {
             className="object-cover w-full h-full"
             priority
           />
-          <div className="hero-overlay" />
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
         </div>
-        <div className="hero-content">
-          <h1 className="hero-title">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none mb-6 drop-shadow-2xl">
             やるぞ、<br />
-            <span className="text-orange-400">ロボコン</span>
+            <span className="text-orange-500 inline-block mt-2">ロボコン</span>
           </h1>
+          <p className="text-white/90 text-lg md:text-xl font-medium tracking-wide max-w-2xl mx-auto drop-shadow-md">
+            長岡技術科学大学 ロボコンプロジェクト
+          </p>
         </div>
-        <div className="hero-scroll">
-          <span className="scroll-text">SCROLL</span>
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="scroll-icon" viewBox="0 0 24 24">
-            <path d="M12 5v14M19 12l-7 7-7-7"/>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center z-10 animate-bounce">
+          <span className="text-white/70 text-xs tracking-[0.3em] mb-2 uppercase">Scroll</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+            <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
           </svg>
         </div>
       </section>
 
       {/* サークルについて */}
-      <section id="about" className="about-section">
-        <div className="section-container">
-          <div className="text-center mb-20">
-            <h2 className="section-title">サークルについて</h2>
-            <p className="section-subtitle about-subtitle">
-              長岡技科大ロボコンプロジェクトは、NHK学生ロボコンやABUロボコンでの優勝を目指し活動する学生団体です。私たちは「機械班」「回路班」「制御班」「運営班」の4つの班に分かれ、それぞれの専門知識を活かしながら、一つの目標に向かってロボット開発に取り組んでいます。ものづくりやチームワークを通じて成長できる環境で、初心者も大歓迎です！
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {
-              [
-                { name: '機械班', description: 'ロボットの設計・製作を担当。機械加工やCAD設計を通じて、ロボットの骨格を作り上げます。', imgSrc: '/assets/home/hero.png' },
-                { name: '回路班', description: '電子回路の設計・製作を担当。基板設計や配線を通じて、ロボットの神経系を作り上げます。', imgSrc: '/assets/home/denshi.png' },
-                { name: '制御班', description: 'プログラミング・制御を担当。マイコン制御やソフトウェア開発を通じて、ロボットの頭脳を作り上げます。', imgSrc: '/assets/home/seigyo.png' },
-                { name: '運営班', description: 'サークルの運営・広報を担当。イベント企画や広報活動を通じて、チーム全体を支えます。', imgSrc: '/assets/home/syougaikatsudou.png' }
-              ].map((team) => (
-                <div key={team.name} className="about-card group">
-                  <Image src={team.imgSrc} alt={team.name} layout="fill" className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-orange-700/80 via-orange-600/20 via-20% to-transparent transition-all duration-300 group-hover:from-orange-700/90 group-hover:via-orange-600/50 group-hover:via-40%"></div>
-                  <div className="relative flex flex-col justify-end h-full p-6 text-white">
-                    <h3 className="text-2xl font-bold tracking-tight">{team.name}</h3>
-                    <div className="mt-2 overflow-hidden">
-                      <p className="text-white/80 transition-all duration-500 ease-in-out translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                        {team.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-
-          {/* その他の活動 */}
-          <div className="mt-24 text-center">
-            <h3 className="text-3xl font-bold text-stone-800 mb-4">世界を目指す挑戦と、地域との繋がり</h3>
-            <p className="text-stone-600 max-w-2xl mx-auto">
-              NHK学生ロボコンでの勝利、そしてその先のABUロボコンでの世界一を目指す挑戦。それと同時に、地域社会との交流も大切にしています。
-            </p>
-          </div>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-8">
-            <div className="activity-card">
-              <h4 className="activity-title">大会への挑戦</h4>
-              <p className="activity-text">
-                毎年設定される困難な課題に対し、独創的なアイデアと技術力で立ち向かいます。目標はただ一つ、世界一です。
-              </p>
-              <a href="/activities" className="text-orange-600 hover:underline mt-4 inline-block">活動詳細を見る →</a>
+      <section id="about" className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-orange-50/50 -skew-x-12 translate-x-1/4 z-0" />
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row items-start justify-between mb-16 gap-8">
+            <div className="md:w-1/2">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+                About Us
+                <span className="block text-lg font-normal text-orange-600 mt-2 tracking-normal">サークルについて</span>
+              </h2>
             </div>
-            <div className="activity-card">
-              <h4 className="activity-title">地域との繋がり</h4>
-              <p className="activity-text">
-                ものづくりの楽しさを伝えるため、地域のイベント参加や企業との交流も積極的に行っています。
+            <div className="md:w-1/2">
+              <p className="text-gray-600 leading-relaxed text-lg">
+                長岡技科大ロボコンプロジェクトは、NHK学生ロボコンやABUロボコンでの優勝を目指し活動する学生団体です。
+                専門知識を活かした「機械」「回路」「制御」「運営」の4つの班が、一つの目標に向かってロボット開発に取り組んでいます。
               </p>
-               <a href="/activities" className="text-orange-600 hover:underline mt-4 inline-block">活動詳細を見る →</a>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { name: '機械班', en: 'Mechanical', description: 'CAD設計と加工技術で、ロボットの強靭な骨格を創造する。', imgSrc: '/assets/home/hero.png' },
+              { name: '回路班', en: 'Electrical', description: '精密な基板設計と配線で、ロボットに命となるエネルギーを吹き込む。', imgSrc: '/assets/home/denshi.png' },
+              { name: '制御班', en: 'Control', description: '高度なプログラミングで、ロボットに知能と正確な動きを与える。', imgSrc: '/assets/home/seigyo.png' },
+              { name: '運営班', en: 'Management', description: '広報やイベント企画を通じて、チームの活動を社会へ発信する。', imgSrc: '/assets/home/syougaikatsudou.png' }
+            ].map((team, index) => (
+              <div key={team.name} className="group relative h-96 rounded-2xl overflow-hidden shadow-lg cursor-pointer">
+                <Image 
+                  src={team.imgSrc} 
+                  alt={team.name} 
+                  fill 
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 group-hover:via-black/40 transition-all duration-300" />
+                <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                  <span className="text-orange-400 font-mono text-sm tracking-wider mb-1 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">{team.en}</span>
+                  <h3 className="text-3xl font-bold mb-2 transform transition-all duration-300 group-hover:-translate-y-2">{team.name}</h3>
+                  <p className="text-gray-200 text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 delay-100">
+                    {team.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 活動内容 - モダンなカードデザイン */}
+      <section className="py-24 bg-stone-50">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">活動のフィールド</h2>
+            <p className="text-gray-600 text-lg">
+              世界を目指す技術的な挑戦から、地域社会との温かい交流まで。<br className="hidden md:block"/>
+              私たちの活動は多岐にわたります。
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-stone-100 flex flex-col">
+              <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-8 text-orange-600">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                  <path d="M4 22h16" />
+                  <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+                  <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+                  <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">ロボコンへの挑戦</h3>
+              <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
+                NHK学生ロボコン優勝、そしてABUロボコン世界一を目指し、日々技術を研鑽しています。
+                毎年変わる課題に対し、チーム一丸となって独創的なマシンの開発に取り組んでいます。
+              </p>
+              <Link href="/activities" className="text-orange-600 font-bold hover:text-orange-700 flex items-center gap-2 group">
+                大会実績を見る 
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
+            </div>
+
+            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-stone-100 flex flex-col">
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 text-blue-600">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">地域との繋がり</h3>
+              <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
+                ものづくりの楽しさを伝えるため、地域のイベント参加や小中学生向けのワークショップを開催しています。
+                技術を通じて地域社会に貢献し、次世代のエンジニアを育成する活動も行っています。
+              </p>
+              <Link href="/activities" className="text-blue-600 font-bold hover:text-blue-700 flex items-center gap-2 group">
+                地域活動を見る 
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ニュース */}
-      <NewsSection />
+      {/* スケジュール（新設） */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-4 md:px-8">
+          <h2 className="text-3xl font-bold text-center mb-16">年間スケジュール</h2>
+          <div className="relative max-w-4xl mx-auto">
+             <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2 hidden md:block" />
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+               {[
+                 { month: '4-5月', title: '新歓・チーム結成', desc: '新入生を迎え、新たなチーム体制でスタートします。' },
+                 { month: '6月', title: 'NHK学生ロボコン', desc: '国内予選。これまでの成果をぶつける最大の舞台です。' },
+                 { month: '8月', title: 'ABUロボコン', desc: '世界大会。各国の代表と技術を競い合います。' },
+                 { month: '10-3月', title: '技術継承・開発', desc: '次年度に向けた基礎研究や講習会を行います。' },
+               ].map((item, i) => (
+                 <div key={i} className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm z-10">
+                   <div className="text-orange-500 font-bold mb-2">{item.month}</div>
+                   <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                   <p className="text-sm text-gray-600">{item.desc}</p>
+                 </div>
+               ))}
+             </div>
+          </div>
+        </div>
+      </section>
 
-      {/* ブログ */}
-      <BlogSection />
+      {/* ニュース & ブログ */}
+      <div className="bg-stone-50">
+        <NewsSection />
+        <BlogSection />
+      </div>
 
       {/* スポンサーセクション */}
-      <section id="sponsors" className="contact-section bg-white">
-        <div className="contact-container">
-          <h2 className="section-title text-gray-900">スポンサー</h2>
-          <p className="section-subtitle contact-subtitle">
-            私たちの活動は、多くの企業様からのご支援によって支えられています。
+      <section id="sponsors" className="py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Sponsors</h2>
+          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+            私たちの活動は、多くの企業様からの温かいご支援によって支えられています。
           </p>
-          <div className="mt-12 bg-white p-8 rounded-lg shadow-md">
-            <div className="flex flex-wrap gap-x-12 gap-y-8 justify-center items-center">
-              {shuffledSponsors.map((sponsor) => (
+          
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 max-w-6xl mx-auto opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+            {shuffledSponsors.map((sponsor) => (
+              <div key={sponsor.src} className="relative w-[120px] h-[60px] md:w-[160px] md:h-[80px] transition-transform hover:scale-110 duration-300">
                 <Image
-                  key={sponsor.src}
                   src={sponsor.src}
                   alt={sponsor.alt}
-                  width={sponsor.width}
-                  height={sponsor.height}
+                  fill
                   className="object-contain"
                 />
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-          <div className="text-center mt-12">
-            <a href="/sponsorship" className="contact-button">
-              スポンサーシップの詳細を見る
-            </a>
+
+          <div className="mt-16">
+            <Link href="/sponsorship" className="inline-flex items-center justify-center px-8 py-4 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+              スポンサーシップの詳細
+            </Link>
           </div>
         </div>
       </section>
 
       {/* お問い合わせ */}
-      <section id="contact" className="contact-section">
-        <div className="contact-container">
-          <h2 className="section-title text-gray-900">お問い合わせ</h2>
-          <p className="section-subtitle contact-subtitle">
-            入部希望・見学希望・スポンサー等のお問い合わせはSNS・メールまたは下のお問い合わせのフォームよりご連絡ください。
+      <section id="contact" className="py-24 bg-stone-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/assets/general/pattern.svg')] opacity-5" />
+        <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">Join Our Team</h2>
+          <p className="text-xl text-stone-300 max-w-2xl mx-auto mb-12">
+            ロボコンプロジェクトでは、共に挑戦する仲間を募集しています。<br/>
+            見学希望、入部希望、その他お問い合わせはこちらから。
           </p>
-          <div className="grid md:grid-cols-2 gap-12 mb-12">
-            <div className="contact-card">
-              <h3 className="contact-card-title">連絡先</h3>
-              <div className="contact-info">
-                <p>Email: robopro.nut@gmail.com</p>
-                <p>Twitter: @nut_robopro</p>
-                <p>Instagram: @example</p>
-              </div>
+          
+          <div className="flex flex-col md:flex-row justify-center gap-6">
+            <a href="mailto:robopro.nut@gmail.com" className="bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
+              メールでのお問い合わせ
+            </a>
+            <button className="bg-transparent border-2 border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
+              よくある質問 (FAQ)
+            </button>
+          </div>
+
+          <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left opacity-80">
+            <div className="p-6 border border-white/10 rounded-xl bg-white/5">
+               <h3 className="font-bold text-lg mb-2 text-orange-400">Activity Base</h3>
+               <p>長岡技術科学大学 機械建設棟 2F / セコムホール</p>
             </div>
-            <div className="contact-card">
-              <h3 className="contact-card-title">活動場所</h3>
-              <div className="contact-info">
-                <p>長岡技術科学大学 機械建設棟 2F</p>
-                <p>長岡技術科学大学 セコムホール</p>
-              </div>
+            <div className="p-6 border border-white/10 rounded-xl bg-white/5">
+               <h3 className="font-bold text-lg mb-2 text-orange-400">Contact</h3>
+               <p>Email: robopro.nut@gmail.com</p>
+               <p>Twitter: @nut_robopro</p>
             </div>
           </div>
-          <button className="contact-button">
-            お問い合わせフォーム
-          </button>
         </div>
       </section>
     </div>

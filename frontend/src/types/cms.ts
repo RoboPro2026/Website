@@ -1,4 +1,4 @@
-import { Asset, Entry, EntryFields, EntrySkeletonType } from 'contentful';
+import { Asset, EntryFields, EntrySkeletonType } from 'contentful';
 
 // StrapiのAPIレスポンスの基本構造
 interface StrapiMeta {

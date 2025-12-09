@@ -4,9 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Entry, Tag } from "contentful";
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { fetchContentful, fetchAllTags } from "@/lib/api";
-import { NewsEntry, NewsEntryFields } from "@/types/cms";
+import { NewsEntry } from "@/types/cms";
 
 export default function NewsSection() {
   const [newsList, setNewsList] = useState<(Entry<NewsEntry> & { metadata: { tags: Tag[] } })[]>([]);
@@ -37,7 +36,7 @@ export default function NewsSection() {
         };
       });
 
-      setNewsList(newsItemsWithResolvedTags as any);
+      setNewsList(newsItemsWithResolvedTags as unknown as (Entry<NewsEntry> & { metadata: { tags: Tag[] } })[]);
     }
     getNews();
   }, []);
@@ -63,22 +62,22 @@ export default function NewsSection() {
             <Link key={news.sys.id} href={`/news/${news.sys.id}`} className="group block">
               <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
                 <div className="w-full h-48 relative">
-                  <Image 
-                    src={news.fields.image?.fields?.file ? `https:${news.fields.image.fields.file.url}` : '/assets/home/hero.png'}
-                    alt={news.fields.title}
-                    layout="fill" 
+                    <Image 
+                    src={(news.fields.image as any)?.fields?.file ? `https:${(news.fields.image as any).fields.file.url}` : '/assets/home/hero.png'}
+                    alt={news.fields.title as unknown as string}
+                    fill
                     className="object-cover" 
                   />
                   <div className="absolute top-3 right-3 flex gap-2">
                     {news.metadata.tags.map((tag) => (
-                      <span key={tag.sys.id} className="bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow font-semibold">{(tag as any).name}</span>
+                      <span key={tag.sys.id} className="bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow font-semibold">{(tag as unknown as { name: string }).name}</span>
                     ))}
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-sm text-stone-500 mb-2">{new Date(news.fields.date).toLocaleDateString('ja-JP')}</p>
-                  <h3 className="text-xl font-bold text-stone-800 mb-3 line-clamp-2 leading-tight">{news.fields.title}</h3>
-                  <p className="text-stone-600 text-base line-clamp-3 mb-4">{news.fields.context}</p>
+                  <p className="text-sm text-stone-500 mb-2">{new Date(news.fields.date as unknown as string).toLocaleDateString('ja-JP')}</p>
+                  <h3 className="text-xl font-bold text-stone-800 mb-3 line-clamp-2 leading-tight">{news.fields.title as unknown as string}</h3>
+                  <p className="text-stone-600 text-base line-clamp-3 mb-4">{news.fields.context as unknown as string}</p>
                   <span className="text-orange-500 font-semibold group-hover:underline">
                     続きを読む
                   </span>
