@@ -25,7 +25,7 @@ export default function Header() {
     { href: "/about", label: "団体概要" },
     { href: "/activities", label: "活動内容" },
     { href: "/news", label: "ニュース" },
-    { href: "/sponsorship", label: "スポンサー" },
+    { href: "/sponsorship", label: "ご支援" },
     { href: "/#contact", label: "お問い合わせ" },
   ];
 

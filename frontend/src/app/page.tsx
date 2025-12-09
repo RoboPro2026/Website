@@ -16,14 +16,14 @@ const imageUrls = [
   '/assets/news/sponsor.jpg',
 ];
 
-interface Sponsor {
+interface Supporter {
   src: string;
   alt: string;
   width: number;
   height: number;
 }
 
-const sponsors: Sponsor[] = [
+const supporters: Supporter[] = [
   { src: '/assets/sponser/tdk.png', alt: 'TDK', width: 150, height: 50 },
   { src: '/assets/sponser/makita.png', alt: 'Makita', width: 150, height: 50 },
   { src: '/assets/sponser/mjs.png', alt: 'MJS', width: 150, height: 50 },
@@ -40,15 +40,15 @@ const sponsors: Sponsor[] = [
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [shuffledSponsors, setShuffledSponsors] = useState<Sponsor[]>([]);
+  const [shuffledSupporters, setShuffledSupporters] = useState<Supporter[]>([]);
 
   useEffect(() => {
-    const shuffled = [...sponsors];
+    const shuffled = [...supporters];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    setShuffledSponsors(shuffled);
+    setShuffledSupporters(shuffled);
   }, []);
 
   useEffect(() => {
@@ -228,7 +228,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* スケジュール（新設） */}
+      {/* スケジュール */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
           <h2 className="text-3xl font-bold text-center mb-16">年間スケジュール</h2>
@@ -259,19 +259,19 @@ export default function Home() {
       </div>
 
       {/* スポンサーセクション */}
-      <section id="sponsors" className="py-24 bg-white">
+      <section id="supporters" className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Sponsors</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Supporters</h2>
           <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-            私たちの活動は、多くの企業様からの温かいご支援によって支えられています。
+            私たちの活動は、多くの企業様・団体様からの温かいご支援によって支えられています。
           </p>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 max-w-6xl mx-auto opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
-            {shuffledSponsors.map((sponsor) => (
-              <div key={sponsor.src} className="relative w-[120px] h-[60px] md:w-[160px] md:h-[80px] transition-transform hover:scale-110 duration-300">
+            {shuffledSupporters.map((supporter) => (
+              <div key={supporter.src} className="relative w-[120px] h-[60px] md:w-[160px] md:h-[80px] transition-transform hover:scale-110 duration-300">
                 <Image
-                  src={sponsor.src}
-                  alt={sponsor.alt}
+                  src={supporter.src}
+                  alt={supporter.alt}
                   fill
                   className="object-contain"
                 />
@@ -281,7 +281,7 @@ export default function Home() {
 
           <div className="mt-16">
             <Link href="/sponsorship" className="inline-flex items-center justify-center px-8 py-4 border border-gray-300 text-base font-medium rounded-full text-gray-700 bg-white hover:bg-gray-50 transition-colors">
-              スポンサーシップの詳細
+              ご支援について
             </Link>
           </div>
         </div>
@@ -301,9 +301,9 @@ export default function Home() {
             <a href="mailto:robopro.nut@gmail.com" className="bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
               メールでのお問い合わせ
             </a>
-            <button className="bg-transparent border-2 border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
+            <Link href="/activities#faq" className="bg-transparent border-2 border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
               よくある質問 (FAQ)
-            </button>
+            </Link>
           </div>
 
           <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left opacity-80">

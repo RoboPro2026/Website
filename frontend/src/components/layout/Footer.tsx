@@ -40,7 +40,7 @@ export default function Footer() {
             <h3 className="new-footer-heading">活動について</h3>
             <ul className="space-y-3">
               <li><Link href="/about" className="new-footer-link">団体概要</Link></li>
-              <li><Link href="/about#activities" className="new-footer-link">活動内容</Link></li>
+              <li><Link href="/activities" className="new-footer-link">活動内容</Link></li>
               <li><Link href="/about#recruitment" className="new-footer-link">メンバー募集</Link></li>
             </ul>
           </div>
@@ -50,7 +50,7 @@ export default function Footer() {
             <h3 className="new-footer-heading">プロジェクト</h3>
             <ul className="space-y-3">
               <li><Link href="/news" className="new-footer-link">ニュース</Link></li>
-              <li><Link href="/sponsorship" className="new-footer-link">スポンサーシップ</Link></li>
+              <li><Link href="/sponsorship" className="new-footer-link">ご支援のお願い</Link></li>
               <li><Link href="/#contact" className="new-footer-link">お問い合わせ</Link></li>
             </ul>
           </div>
@@ -76,4 +76,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}

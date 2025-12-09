@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const achievements = [
   { year: '2025', details: ['東海地区交流ロボコンにてRohm株式会社様より特別賞受賞。'] },
@@ -30,23 +31,27 @@ const achievements = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-stone-50 text-gray-800">
-      <main className="py-20 px-4 md:px-8 lg:px-16 fade-in">
-        <div className="max-w-4xl mx-auto">
+      <main className="py-24 px-4 md:px-8 lg:px-16 fade-in">
+        <div className="max-w-5xl mx-auto">
 
           {/* ページタイトル */}
-          <header className="text-center mb-20">
-            <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
-              団体概要
+          <header className="text-center mb-20 pt-10">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">
+              About Us
+              <span className="block text-lg font-normal text-orange-600 mt-2 tracking-normal">団体概要</span>
             </h1>
-            <p className="mt-4 text-lg text-gray-600">
-              長岡技術科学大学ロボコンプロジェクトについて
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              私たち長岡技術科学大学ロボコンプロジェクトの活動と歴史について
             </p>
           </header>
 
           {/* 団体について */}
-          <section id="about-us" className="mb-24">
-            <h2 className="section-title text-gray-900">私たちについて</h2>
-            <div className="prose prose-lg max-w-none">
+          <section id="about-us" className="mb-24 bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-stone-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+              <span className="w-2 h-8 bg-orange-500 rounded-full block"></span>
+              私たちについて
+            </h2>
+            <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-6">
               <p>
                 長岡技術科学大学ロボコンプロジェクトは、NHK学生ロボコンやABUアジア・太平洋ロボットコンテストでの優勝を最終目標に掲げ、日々活動している学生団体です。
                 単にロボットを製作するだけでなく、その過程で得られる知識、技術、そしてチームワークを大切にしています。
@@ -59,96 +64,99 @@ export default function AboutPage() {
 
           {/* 活動内容 */}
           <section id="activities" className="mb-24">
-            <h2 className="section-title text-gray-900">活動内容</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 text-center">活動の柱</h2>
             <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="activity-card-about">
-                <h3 className="text-2xl font-bold mb-4">ロボット製作</h3>
-                <p>
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-6 text-orange-600">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12 2.1 12a10 10 0 0 1 9.9-10V12z"></path><path d="M21.9 12H12l-8.9 9A10 10 0 0 1 12 22a10 10 0 0 1 10-10z"></path></svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">ロボット製作</h3>
+                <p className="text-gray-600 leading-relaxed">
                   大会のルールに基づき、毎年新しいロボットをゼロから設計・製作します。アイデア出しから設計、加工、組立、プログラミング、そしてテストまで、ロボット開発の全工程を学生主体で行います。
                 </p>
               </div>
-              <div className="activity-card-about">
-                <h3 className="text-2xl font-bold mb-4">班活動</h3>
-                <p>
+              <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">班活動</h3>
+                <p className="text-gray-600 leading-relaxed">
                   活動は主に「機械班」「回路班」「制御班」「運営班」の4つの班に分かれて行われます。各班が専門性を高めつつ、密に連携を取ることで、複雑なロボットシステムを完成させます。
                 </p>
               </div>
             </div>
             <div className="text-center">
-              <Link href="/activities" className="contact-button">
-                各班の活動や代表挨拶を見る
+              <Link href="/activities" className="inline-flex items-center justify-center px-8 py-3 border border-orange-500 text-base font-medium rounded-full text-orange-600 bg-white hover:bg-orange-50 transition-colors">
+                各班の活動詳細を見る →
               </Link>
             </div>
           </section>
 
           {/* 年間行事 */}
           <section id="annual-events" className="mb-24">
-            <h2 className="section-title text-gray-900">年間行事</h2>
-            <div className="relative border-l-2 border-orange-500 pl-8">
-              {/* イベント1 */}
-              <div className="mb-12">
-                <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
-                <h3 className="text-xl font-bold text-gray-900">4月: 新入生歓迎会</h3>
-                <p className="text-gray-700">新しい仲間を迎え、活動内容を紹介します。</p>
-              </div>
-              {/* イベント2 */}
-              <div className="mb-12">
-                <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
-                <h3 className="text-xl font-bold text-gray-900">6月: NHK学生ロボコン</h3>
-                <p className="text-gray-700">一年間の集大成。全国の大学とアイディア・技術を競い合います。</p>
-              </div>
-              {/* イベント3 */}
-              <div className="mb-12">
-                <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
-                <h3 className="text-xl font-bold text-gray-900">8月: ABUロボコン</h3>
-                <p className="text-gray-700">NHK学生ロボコンで優勝すると、日本代表として世界と戦います。</p>
-              </div>
-               {/* イベント4 */}
-              <div className="mb-12">
-                <div className="absolute w-4 h-4 bg-orange-500 rounded-full -left-2 mt-1.5"></div>
-                <h3 className="text-xl font-bold text-gray-900">9月: 東海地区交流ロボコンなどの大会への参加</h3>
-                <p className="text-gray-700">新体制でのロボット製作が始まります。技術共有やチームビルディングを行います。</p>
-              </div>
-            </div>
+             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-10 text-center">年間行事</h2>
+             <div className="max-w-3xl mx-auto relative pl-8 border-l-2 border-stone-200 space-y-12">
+               {[
+                 { month: '4月', title: '新入生歓迎会', desc: '新しい仲間を迎え、活動内容を紹介します。' },
+                 { month: '6月', title: 'NHK学生ロボコン', desc: '一年間の集大成。全国の大学とアイディア・技術を競い合います。' },
+                 { month: '8月', title: 'ABUロボコン', desc: 'NHK学生ロボコンで優勝すると、日本代表として世界と戦います。' },
+                 { month: '9月', title: '各種交流大会', desc: '新体制でのロボット製作が始まります。技術共有やチームビルディングを行います。' }
+               ].map((event, idx) => (
+                 <div key={idx} className="relative">
+                   <div className="absolute -left-[41px] top-1 w-5 h-5 bg-white border-4 border-orange-500 rounded-full"></div>
+                   <span className="text-orange-500 font-bold block mb-1">{event.month}</span>
+                   <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
+                   <p className="text-gray-600">{event.desc}</p>
+                 </div>
+               ))}
+             </div>
           </section>
 
           {/* 活動実績 */}
           <section id="achievements" className="mb-24">
-            <h2 className="section-title text-gray-900">活動実績</h2>
-            <div className="space-y-12">
-              {achievements.map((achievement) => (
-                <div key={achievement.year}>
-                  <h3 className="text-3xl font-bold text-orange-600 mb-6 pl-4 border-l-4 border-orange-500">{achievement.year}年</h3>
-                  <ul className="list-disc pl-12 space-y-2 text-gray-700">
-                    {achievement.details.map((detail, index) => (
-                      <li key={index}>{detail}</li>
-                    ))}
-                  </ul>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-12 text-center">History & Achievements</h2>
+            <div className="space-y-6">
+              {achievements.map((achievement, index) => (
+                <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-stone-100 flex flex-col md:flex-row gap-4 md:gap-8 hover:border-orange-200 transition-colors">
+                  <div className="flex-shrink-0">
+                    <span className="text-2xl md:text-3xl font-bold text-orange-500 font-mono block w-24">{achievement.year}</span>
+                  </div>
+                  <div className="flex-grow pt-1">
+                    <ul className="space-y-3">
+                      {achievement.details.map((detail, detailIndex) => (
+                        <li key={detailIndex} className="text-gray-700 flex items-start">
+                          <span className="inline-block w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
           </section>
 
           {/* メンバー募集 */}
-          <section id="recruitment" className="mb-24">
-            <h2 className="section-title text-gray-900">メンバー募集</h2>
-            <div className="prose prose-lg max-w-none bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-4">募集条件</h3>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>長岡技術科学大学 学部1～4年生の全課程学生</li>
-                <li>ロボットが好きな方</li>
-                <li>ものづくりが好きな方</li>
-                <li>経験・未経験不問</li>
-              </ul>
-              <p className="mt-6">
-                高専ロボコン経験者はもちろん、高専からの未経験者、一般高校からの未経験者も大歓迎です。
+          <section id="recruitment" className="mb-24 bg-stone-900 text-white p-8 md:p-16 rounded-3xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/assets/general/pattern.svg')] opacity-5" />
+            <div className="relative z-10 text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold mb-6">Join Us!</h2>
+              <p className="text-stone-300 mb-8 leading-relaxed">
+                長岡技術科学大学 学部1～4年生の全課程学生を募集中。<br/>
+                ロボットが好き、ものづくりが好きなら、経験は問いません。<br/>
+                一緒に世界を目指す仲間をお待ちしています。
               </p>
-              <p>
-                問題を打開し一生懸命作ったロボットが競技を達成した時のうれしさは格別です。ものづくりの醍醐味を一番感じられる場所だと思います。
-              </p>
-              <p className="font-bold">
-                勝利を目指して、一緒にがんばりましょう。お待ちしております。
-              </p>
+              <div className="bg-white/10 p-6 rounded-xl text-left mb-8 backdrop-blur-sm border border-white/10">
+                <h3 className="font-bold text-lg mb-4 text-orange-400">募集要項</h3>
+                <ul className="space-y-2 text-sm text-stone-200">
+                  <li className="flex items-center gap-2">✓ 全学年・全学科対象</li>
+                  <li className="flex items-center gap-2">✓ 初心者・未経験者大歓迎</li>
+                  <li className="flex items-center gap-2">✓ 高専ロボコン経験者も歓迎</li>
+                </ul>
+              </div>
+              <a href="/#contact" className="inline-block bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
+                お問い合わせはこちら
+              </a>
             </div>
           </section>
 
@@ -158,4 +166,4 @@ export default function AboutPage() {
       {/* フッターはグローバルレイアウトで表示される想定 */}
     </div>
   );
-} 
+}
