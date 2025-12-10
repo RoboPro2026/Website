@@ -12,7 +12,9 @@ const supporters = [
     { name: 'sprix', src: '/assets/sponser/sprix.png' },
     { name: 'noex', src: '/assets/sponser/noex.png' },
     { name: 'tdk', src: '/assets/sponser/tdk.png' },
-    { name: 'makita', src: '/assets/sponser/makita.png' }
+    { name: 'makita', src: '/assets/sponser/makita.png' },
+    {name: 'npm', src: '/assets/sponser/npm.jpg'},
+    {name: 'tone', src: '/assets/sponser/tone.jpg'},
 ];
 
 export default function SupportersPage() {
@@ -54,7 +56,7 @@ export default function SupportersPage() {
             <div className="bg-white p-12 rounded-3xl shadow-sm border border-stone-100">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 items-center">
                 {supporters.map(supporter => (
-                  <div key={supporter.name} className="flex justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-80 hover:opacity-100">
+                  <div key={supporter.name} className="flex justify-center transition-all duration-300 hover:scale-110">
                     <Image 
                       src={supporter.src} 
                       alt={`ご支援企業 ${supporter.name}`}

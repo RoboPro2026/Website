@@ -35,6 +35,8 @@ const supporters: Supporter[] = [
   { src: '/assets/sponser/tkf.png', alt: 'TKF', width: 150, height: 50 },
   { src: '/assets/sponser/systecom.png', alt: 'Systecom', width: 150, height: 50 },
   { src: '/assets/sponser/ocs.png', alt: 'OCS', width: 150, height: 50 },
+  { src: '/assets/sponser/npm.jpg', alt: 'NPM', width: 150, height: 50 },
+  { src: '/assets/sponser/tone.jpg', alt: 'TONE', width: 150, height: 50 },
 ];
 
 export default function Home() {
@@ -243,8 +245,8 @@ export default function Home() {
                ].map((item, i) => (
                  <div key={i} className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm z-10">
                    <div className="text-orange-500 font-bold mb-2">{item.month}</div>
-                   <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                   <p className="text-sm text-gray-600">{item.desc}</p>
+                   <h3 className="font-bold text-lg mb-2 text-gray-900">{item.title}</h3>
+                   <p className="text-sm text-gray-800">{item.desc}</p>
                  </div>
                ))}
              </div>
@@ -266,7 +268,7 @@ export default function Home() {
             私たちの活動は、多くの企業様・団体様からのご支援によって支えられています。
           </p>
           
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 max-w-6xl mx-auto opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 max-w-6xl mx-auto transition-all duration-500">
             {shuffledSupporters.map((supporter) => (
               <div key={supporter.src} className="relative w-[120px] h-[60px] md:w-[160px] md:h-[80px] transition-transform hover:scale-110 duration-300">
                 <Image
