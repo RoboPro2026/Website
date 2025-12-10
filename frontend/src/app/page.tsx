@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import NewsSection from "@/components/sections/NewsSection";
-import BlogSection from "@/components/sections/BlogSection";
+import SnsSection from "@/components/sections/SnsSection";
 import LoadingScreen from "@/components/LoadingScreen";
 
 // 読み込む画像のリスト
@@ -257,7 +257,7 @@ export default function Home() {
       {/* ニュース & ブログ */}
       <div className="bg-stone-50">
         <NewsSection />
-        <BlogSection />
+        <SnsSection />
       </div>
 
       {/* スポンサーセクション */}
