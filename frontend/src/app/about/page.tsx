@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const achievements = [
   { year: '2025', details: ['東海地区交流ロボコンにてRohm株式会社様より特別賞受賞。'] },
@@ -154,9 +153,9 @@ export default function AboutPage() {
                   <li className="flex items-center gap-2">✓ 高専ロボコン経験者も歓迎</li>
                 </ul>
               </div>
-              <a href="/#contact" className="inline-block bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
+              <Link href="/contact" className="inline-block bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
                 お問い合わせはこちら
-              </a>
+              </Link>
             </div>
           </section>
 

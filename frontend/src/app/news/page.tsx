@@ -75,28 +75,28 @@ export default function NewsListPage() {
                 <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 overflow-hidden h-full flex flex-col group-hover:-translate-y-1">
                   <div className="w-full h-56 relative overflow-hidden">
                       <Image 
-                      src={(news.fields.image as unknown as any)?.fields?.file ? `https:${(news.fields.image as unknown as any).fields.file.url}` : '/assets/home/hero.png'}
-                      alt={news.fields.title as unknown as string} 
+                      src={(news.fields.image as any)?.fields?.file ? `https:${(news.fields.image as any).fields.file.url}` : '/assets/home/hero.png'}
+                      alt={String(news.fields.title)} 
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110" 
                     />
                     <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end">
                       {news.metadata.tags.map((tag) => (
-                        <span key={tag.sys.id} className="bg-white/90 backdrop-blur-sm text-orange-600 text-xs px-3 py-1 rounded-full shadow-sm font-bold tracking-wide">
-                          {(tag as unknown as { name: string }).name}
-                        </span>
+                      <span key={tag.sys.id} className="bg-white/90 backdrop-blur-sm text-orange-600 text-xs px-3 py-1 rounded-full shadow-sm font-bold tracking-wide">
+                        {(tag as any).name}
+                      </span>
                       ))}
                     </div>
                   </div>
                   <div className="p-6 md:p-8 flex-grow flex flex-col">
                     <time className="text-sm text-stone-400 mb-3 font-medium block">
-                      {new Date(news.fields.date as unknown as string).toLocaleDateString('ja-JP')}
+                      {new Date(String(news.fields.date)).toLocaleDateString('ja-JP')}
                     </time>
                     <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-orange-600 transition-colors">
-                      {news.fields.title as unknown as string}
+                      {String(news.fields.title)}
                     </h3>
                     <p className="text-gray-600 text-sm md:text-base line-clamp-3 mb-6 flex-grow leading-relaxed">
-                      {news.fields.context as unknown as string}
+                      {String(news.fields.context)}
                     </p>
                     <div className="mt-auto flex items-center text-orange-600 font-bold text-sm">
                       READ MORE

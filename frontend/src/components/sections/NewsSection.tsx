@@ -63,21 +63,21 @@ export default function NewsSection() {
               <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
                 <div className="w-full h-48 relative">
                     <Image 
-                    src={(news.fields.image as any)?.fields?.file ? `https:${(news.fields.image as any).fields.file.url}` : '/assets/home/hero.png'}
-                    alt={news.fields.title as unknown as string}
+                  src={(news.fields.image as any)?.fields?.file ? `https:${(news.fields.image as any).fields.file.url}` : '/assets/home/hero.png'}
+                  alt={String(news.fields.title)}
                     fill
                     className="object-cover" 
                   />
                   <div className="absolute top-3 right-3 flex gap-2">
                     {news.metadata.tags.map((tag) => (
-                      <span key={tag.sys.id} className="bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow font-semibold">{(tag as unknown as { name: string }).name}</span>
+                  <span key={tag.sys.id} className="bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow font-semibold">{(tag as any).name}</span>
                     ))}
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-sm text-stone-500 mb-2">{new Date(news.fields.date as unknown as string).toLocaleDateString('ja-JP')}</p>
-                  <h3 className="text-xl font-bold text-stone-800 mb-3 line-clamp-2 leading-tight">{news.fields.title as unknown as string}</h3>
-                  <p className="text-stone-600 text-base line-clamp-3 mb-4">{news.fields.context as unknown as string}</p>
+                  <p className="text-sm text-stone-500 mb-2">{new Date(String(news.fields.date)).toLocaleDateString('ja-JP')}</p>
+                  <h3 className="text-xl font-bold text-stone-800 mb-3 line-clamp-2 leading-tight">{String(news.fields.title)}</h3>
+                  <p className="text-stone-600 text-base line-clamp-3 mb-4">{String(news.fields.context)}</p>
                   <span className="text-orange-500 font-semibold group-hover:underline">
                     続きを読む
                   </span>

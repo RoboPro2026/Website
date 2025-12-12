@@ -154,7 +154,7 @@ export default function Home() {
               { name: '回路班', en: 'Electrical', description: '基板設計や配線を行い、ロボットが動くための神経回路を繋ぎます。', imgSrc: '/assets/home/denshi.png' },
               { name: '制御班', en: 'Control', description: 'プログラミングを駆使して、ロボットに命を吹き込み、自在に操ります。', imgSrc: '/assets/home/seigyo.png' },
               { name: '運営班', en: 'Management', description: '広報やイベント企画など、ロボット製作以外の面からチームを支えます。', imgSrc: '/assets/home/syougaikatsudou.png' }
-            ].map((team, index) => (
+            ].map((team) => (
               <div key={team.name} className="group relative h-96 rounded-2xl overflow-hidden shadow-lg cursor-pointer">
                 <Image 
                   src={team.imgSrc} 

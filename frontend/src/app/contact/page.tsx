@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export const metadata = {
   title: 'お問い合わせ | 長岡技術科学大学 ロボコンプロジェクト',

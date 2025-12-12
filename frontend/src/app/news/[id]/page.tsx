@@ -2,11 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Entry, Tag } from 'contentful';
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import { Tag } from 'contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { fetchContentful, fetchAllTags } from '@/lib/api';
-import { NewsEntry, NewsEntryFields } from '@/types/cms';
 import { notFound } from 'next/navigation';
 
 // generateStaticParams を使って静的にパスを生成
