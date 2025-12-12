@@ -254,7 +254,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ニュース & ブログ */}
+      {/* ニュース & SNS */}
       <div className="bg-stone-50">
         <NewsSection />
         <SnsSection />
@@ -289,36 +289,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* お問い合わせ */}
-      <section id="contact" className="py-24 bg-stone-900 text-white relative overflow-hidden">
+      {/* お問い合わせへの誘導 */}
+      <section className="py-24 bg-stone-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/assets/general/pattern.svg')] opacity-5" />
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">Join Our Team</h2>
           <p className="text-xl text-stone-300 max-w-2xl mx-auto mb-12">
-            一緒にロボットを作る仲間を募集しています。<br/>
-            未経験でも大丈夫。見学や入部希望など、お気軽にご連絡ください。
+            ロボット製作に興味がある方、私たちの活動をご支援いただける方。<br/>
+            まずはお気軽にお問い合わせください。
           </p>
           
-          <div className="flex flex-col md:flex-row justify-center gap-6">
-            <a href="mailto:robopro.nut@gmail.com" className="bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
-              メールでのお問い合わせ
-            </a>
-            <Link href="/activities#faq" className="bg-transparent border-2 border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all">
-              よくある質問 (FAQ)
-            </Link>
-          </div>
-
-          <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto text-left opacity-80">
-            <div className="p-6 border border-white/10 rounded-xl bg-white/5">
-               <h3 className="font-bold text-lg mb-2 text-orange-400">活動場所</h3>
-               <p>長岡技術科学大学 機械建設棟 2F / セコムホール</p>
-            </div>
-            <div className="p-6 border border-white/10 rounded-xl bg-white/5">
-               <h3 className="font-bold text-lg mb-2 text-orange-400">連絡先</h3>
-               <p>Email: robopro.nut@gmail.com</p>
-               <p>Twitter: @nut_robopro</p>
-            </div>
-          </div>
+          <Link href="/contact" className="inline-block bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
+            お問い合わせ・入部希望はこちら
+          </Link>
         </div>
       </section>
     </div>

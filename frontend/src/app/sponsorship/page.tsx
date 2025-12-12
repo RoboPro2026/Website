@@ -122,14 +122,11 @@ export default function SupportersPage() {
               <h2 className="text-3xl font-bold mb-6">お問い合わせ</h2>
               <p className="text-stone-300 max-w-2xl mx-auto mb-8 leading-relaxed">
                 ご支援に関するご質問や、具体的な支援方法のご相談は、<br/>
-                以下の連絡先までお気軽にお問い合わせください。
+                お問い合わせページよりご連絡ください。
               </p>
-              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                <svg className="w-6 h-6 mr-3 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                <a href="mailto:robopro.nut@gmail.com" className="text-xl font-bold hover:text-orange-400 transition-colors">
-                  robopro.nut@gmail.com
-                </a>
-              </div>
+              <Link href="/contact" className="inline-block bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
+                 お問い合わせページへ
+              </Link>
             </div>
           </section>
 

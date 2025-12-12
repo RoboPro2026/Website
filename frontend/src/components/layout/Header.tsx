@@ -26,7 +26,7 @@ export default function Header() {
     { href: "/activities", label: "活動内容" },
     { href: "/news", label: "ニュース" },
     { href: "/sponsorship", label: "ご支援" },
-    { href: "/#contact", label: "お問い合わせ" },
+    { href: "/contact", label: "お問い合わせ" },
   ];
 
   return (
@@ -59,7 +59,7 @@ export default function Header() {
               </Link>
             ))}
             <Link 
-              href="/#contact" 
+              href="/contact" 
               className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
                 isScrolled || pathname !== '/' 
                   ? 'bg-orange-500 text-white hover:bg-orange-600' 
@@ -107,7 +107,7 @@ export default function Header() {
             </Link>
           ))}
           <Link 
-            href="/#contact" 
+            href="/contact" 
             className="mt-4 px-8 py-3 bg-orange-500 text-white rounded-full text-lg font-bold hover:bg-orange-600 transition-all"
             onClick={() => setIsMenuOpen(false)}
           >

@@ -51,7 +51,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link href="/news" className="new-footer-link">ニュース</Link></li>
               <li><Link href="/sponsorship" className="new-footer-link">ご支援のお願い</Link></li>
-              <li><Link href="/#contact" className="new-footer-link">お問い合わせ</Link></li>
+              <li><Link href="/contact" className="new-footer-link">お問い合わせ</Link></li>
             </ul>
           </div>
 
