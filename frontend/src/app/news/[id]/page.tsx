@@ -2,8 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Tag } from 'contentful';
+import { Tag, Asset, Entry, EntrySkeletonType } from 'contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Document } from '@contentful/rich-text-types';
 import { fetchContentful, fetchAllTags } from '@/lib/api';
 import { notFound } from 'next/navigation';
 
@@ -11,7 +12,7 @@ import { notFound } from 'next/navigation';
 export async function generateStaticParams() {
   try {
     const newsResponse = await fetchContentful('clubNews');
-    return newsResponse.items.map((article: any) => ({
+    return newsResponse.items.map((article: Entry<EntrySkeletonType>) => ({
       id: article.sys.id,
     }));
   } catch (error) {
@@ -28,7 +29,7 @@ async function getNewsArticle(id: string) {
       fetchAllTags()
     ]);
     
-    const article = newsResponse.items.find((item: any) => item.sys.id === id);
+    const article = newsResponse.items.find((item: Entry<EntrySkeletonType>) => item.sys.id === id);
     if (!article) return null;
 
     // タグ情報を解決
@@ -38,7 +39,7 @@ async function getNewsArticle(id: string) {
     }
 
     const resolvedTags = article.metadata?.tags
-      ?.map((tagLink: any) => tagMap.get(tagLink.sys.id))
+      ?.map((tagLink) => tagMap.get(tagLink.sys.id))
       .filter(Boolean) as Tag[] || [];
 
     return {
@@ -64,12 +65,12 @@ export default async function NewsArticlePage({ params }: Props) {
     notFound();
   }
 
-  const { title, context, content, date, image } = article.fields as any;
-  const imageUrl = image?.fields?.file ? `https:${image.fields.file.url}` : '/assets/home/hero.png';
+  const { title, context, content, date, image } = article.fields;
+  const imageUrl = (image as unknown as Asset)?.fields?.file?.url ? `https:${(image as unknown as Asset).fields.file?.url}` : '/assets/home/hero.png';
   const tags = article.metadata?.tags || [];
   
   // contentフィールドがある場合はリッチテキスト、ない場合はcontextをMarkdownとして表示
-  const articleContent = content ? documentToReactComponents(content) : context;
+  const articleContent = content ? documentToReactComponents(content as Document) : context;
 
   return (
     <div className="min-h-screen bg-white">
@@ -81,7 +82,7 @@ export default async function NewsArticlePage({ params }: Props) {
               <div className="flex gap-2 mb-2">
                 {tags.map((tag) => (
                   <span key={tag.sys.id} className="bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow font-semibold">
-                    {(tag as any).name}
+                    {(tag as unknown as Tag).name}
                   </span>
                 ))}
               </div>
@@ -104,7 +105,7 @@ export default async function NewsArticlePage({ params }: Props) {
               {content ? (
                 // Contentfulのリッチテキストを表示
                 <div className="contentful-rich-text">
-                  {articleContent}
+                  {articleContent as React.ReactNode}
                 </div>
               ) : (
                 // contextをMarkdownとして表示

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Entry, Tag } from "contentful";
+import { Entry, Tag, Asset } from "contentful";
 import { fetchContentful, fetchAllTags } from "@/lib/api";
 import { NewsEntry } from "@/types/cms";
 
@@ -62,15 +62,15 @@ export default function NewsSection() {
             <Link key={news.sys.id} href={`/news/${news.sys.id}`} className="group block">
               <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
                 <div className="w-full h-48 relative">
-                    <Image 
-                  src={(news.fields.image as any)?.fields?.file ? `https:${(news.fields.image as any).fields.file.url}` : '/assets/home/hero.png'}
-                  alt={String(news.fields.title)}
+                  <Image 
+                    src={(news.fields.image as unknown as Asset)?.fields?.file?.url ? `https:${(news.fields.image as unknown as Asset).fields.file?.url}` : '/assets/home/hero.png'}
+                    alt={String(news.fields.title)}
                     fill
                     className="object-cover" 
                   />
                   <div className="absolute top-3 right-3 flex gap-2">
                     {news.metadata.tags.map((tag) => (
-                  <span key={tag.sys.id} className="bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow font-semibold">{(tag as any).name}</span>
+                      <span key={tag.sys.id} className="bg-orange-500 text-white text-sm px-3 py-1 rounded-full shadow font-semibold">{(tag as unknown as Tag).name}</span>
                     ))}
                   </div>
                 </div>
