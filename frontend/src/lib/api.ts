@@ -53,6 +53,12 @@ export async function fetchAPI(path: string, urlParamsObject = {}, options = {})
  */
 export async function fetchContentful(contentType: string, query?: object) {
   try {
+    // クライアントが初期化されていない場合は空の結果を返す
+    if (!contentfulClient) {
+      console.warn('Contentful client is not initialized. Returning empty results.');
+      return { items: [], total: 0 };
+    }
+    
     const entries = await contentfulClient.getEntries({
       content_type: contentType,
       ...query,
@@ -70,6 +76,12 @@ export async function fetchContentful(contentType: string, query?: object) {
  */
 export async function fetchAllTags() {
   try {
+    // クライアントが初期化されていない場合は空の配列を返す
+    if (!contentfulClient) {
+      console.warn('Contentful client is not initialized. Returning empty tags.');
+      return { items: [], total: 0 };
+    }
+    
     const tags = await contentfulClient.getTags();
     return tags.items;
   } catch (error) {
