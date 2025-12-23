@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: "export",
   // GitHub Pages用のベースパス設定（リポジトリ名を指定）
-  basePath: process.env.NODE_ENV === 'production' ? '/Website' : '',
+  basePath: '/Website',
   // 画像やアセットのプレフィックスも同様に設定
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Website' : '',
+  assetPrefix: '/Website',
   images: {
     unoptimized: true,
     remotePatterns: [
