@@ -301,7 +301,7 @@ export default function Home() {
           
           <Link href="/contact" className="inline-block bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30">
             お問い合わせ・入部希望はこちら
-          </Link>
+            </Link>
         </div>
       </section>
     </div>

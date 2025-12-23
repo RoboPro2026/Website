@@ -62,7 +62,7 @@ export default function NewsSection() {
             <Link key={news.sys.id} href={`/news/${news.sys.id}`} className="group block">
               <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
                 <div className="w-full h-48 relative">
-                  <Image 
+                    <Image 
                     src={(news.fields.image as unknown as Asset)?.fields?.file?.url ? `https:${(news.fields.image as unknown as Asset).fields.file?.url}` : '/assets/home/hero.png'}
                     alt={String(news.fields.title)}
                     fill

@@ -74,7 +74,7 @@ export default function NewsListPage() {
               <Link key={news.sys.id} href={`/news/${news.sys.id}`} className="group block h-full">
                 <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 overflow-hidden h-full flex flex-col group-hover:-translate-y-1">
                   <div className="w-full h-56 relative overflow-hidden">
-                    <Image 
+                      <Image 
                       src={(news.fields.image as unknown as Asset)?.fields?.file?.url ? `https:${(news.fields.image as unknown as Asset).fields.file?.url}` : '/assets/home/hero.png'}
                       alt={String(news.fields.title)} 
                       fill
@@ -82,9 +82,9 @@ export default function NewsListPage() {
                     />
                     <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end">
                       {news.metadata.tags.map((tag) => (
-                      <span key={tag.sys.id} className="bg-white/90 backdrop-blur-sm text-orange-600 text-xs px-3 py-1 rounded-full shadow-sm font-bold tracking-wide">
+                        <span key={tag.sys.id} className="bg-white/90 backdrop-blur-sm text-orange-600 text-xs px-3 py-1 rounded-full shadow-sm font-bold tracking-wide">
                         {(tag as unknown as Tag).name}
-                      </span>
+                        </span>
                       ))}
                     </div>
                   </div>
