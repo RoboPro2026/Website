@@ -79,7 +79,7 @@ export async function fetchAllTags() {
     // クライアントが初期化されていない場合は空の配列を返す
     if (!contentfulClient) {
       console.warn('Contentful client is not initialized. Returning empty tags.');
-      return { items: [], total: 0 };
+      return [];
     }
     
     const tags = await contentfulClient.getTags();

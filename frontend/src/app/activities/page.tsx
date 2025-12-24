@@ -3,13 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const representative = {
-  name: "五十嵐 幸多",
-  title: "代表",
-  greeting: `いい感じのこめんと(ちょっと長め)。`,
-  imageUrl: "/assets/home/hero.png"
-};
-
 const challengeImages = [
   '/assets/home/robo2.png',
   '/assets/home/robo1.png',
@@ -179,26 +172,6 @@ export default function ActivitiesPage() {
             </div>
           </section>
         </main>
-
-        {/* 代表挨拶 */}
-        <section className="bg-stone-50 py-24 px-4 md:px-8 lg:px-16">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">代表挨拶</h2>
-            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-stone-100 flex flex-col md:flex-row items-center gap-10">
-              <div className="md:w-1/3 text-center flex-shrink-0">
-                <div className="relative w-48 h-48 mx-auto mb-6">
-                  <Image src={representative.imageUrl} alt={representative.name} fill className="rounded-full object-cover shadow-lg border-4 border-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">{representative.name}</h3>
-                <p className="text-orange-600 font-medium">{representative.title}</p>
-              </div>
-              <div className="md:w-2/3 relative">
-                 <svg className="absolute -top-4 -left-4 w-8 h-8 text-gray-200" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.896 14.325 15.939 14.941 15.13C15.557 14.321 16.514 13.916 17.812 13.916L19.344 13.916L19.344 10.957L17.512 10.957C16.275 10.957 15.222 10.45 14.354 9.436C13.486 8.422 13.052 7.151 13.052 5.624L13.052 3L19.568 3L19.568 5.438C19.568 6.444 19.362 7.376 18.95 8.234C18.538 9.092 18.067 9.878 17.537 10.592L21.378 10.592L21.378 21L14.017 21ZM5.00604 21L5.00604 18C5.00604 16.896 5.31404 15.939 5.93004 15.13C6.54604 14.321 7.50204 13.916 8.80104 13.916L10.332 13.916L10.332 10.957L8.50004 10.957C7.26404 10.957 6.21104 10.45 5.34204 9.436C4.47404 8.422 4.04004 7.151 4.04004 5.624L4.04004 3L10.556 3L10.556 5.438C10.556 6.444 10.35 7.376 9.93804 8.234C9.52604 9.092 9.05504 9.878 8.52504 10.592L12.366 10.592L12.366 21L5.00604 21Z"/></svg>
-                <p className="text-lg leading-relaxed text-gray-600 italic relative z-10 pl-4">{representative.greeting}</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* FAQ セクション */}
         <section id="faq" className="py-24 bg-white">

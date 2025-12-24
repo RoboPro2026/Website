@@ -42,6 +42,7 @@ jobs:
       - name: Build
         working-directory: ./frontend
         env:
+          GITHUB_PAGES: "true"
           NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
         run: npm run build

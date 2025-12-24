@@ -21,15 +21,27 @@ export default function Header() {
     setIsMenuOpen(false);
   }, [pathname]);
 
+  // スクロール禁止
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   const navLinks = [
     { href: "/about", label: "団体概要" },
     { href: "/activities", label: "活動内容" },
     { href: "/news", label: "ニュース" },
     { href: "/sponsorship", label: "ご支援" },
-    { href: "/contact", label: "お問い合わせ" },
   ];
 
   return (
+    <>
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled || isMenuOpen ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
@@ -72,7 +84,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden z-50 p-2"
+            className="md:hidden z-[80] relative p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -90,31 +102,58 @@ export default function Header() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile Nav Overlay */}
-      <div className={`fixed inset-0 bg-white/95 backdrop-blur-xl z-40 transition-all duration-300 flex items-center justify-center md:hidden ${
+    {/* Mobile Nav Overlay - ヘッダーの外側に配置 */}
+    <div 
+      className={`fixed inset-0 bg-white z-[60] flex items-center justify-center md:hidden transition-all duration-300 ${
         isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-      }`}>
-        <nav className="flex flex-col items-center gap-8 p-8">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.href} 
-              href={link.href} 
-              className="text-2xl font-bold text-gray-800 hover:text-orange-500 transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+      }`}
+      onClick={() => setIsMenuOpen(false)}
+    >
+      {/* 閉じるボタン */}
+      <button 
+        className="absolute top-6 right-6 z-[70] p-2 hover:bg-gray-100 rounded-full transition-colors"
+        onClick={() => setIsMenuOpen(false)}
+        aria-label="Close menu"
+      >
+        <svg className="w-8 h-8 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      {/* メニュー項目 */}
+      <nav 
+        className={`flex flex-col items-center gap-8 p-8 transition-all duration-500 ${
+          isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {navLinks.map((link, index) => (
           <Link 
-            href="/contact" 
-            className="mt-4 px-8 py-3 bg-orange-500 text-white rounded-full text-lg font-bold hover:bg-orange-600 transition-all"
+            key={link.href} 
+            href={link.href} 
+            className={`text-2xl font-bold text-gray-800 hover:text-orange-500 transition-all duration-300 ${
+              isMenuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+            }`}
+            style={{ transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms' }}
             onClick={() => setIsMenuOpen(false)}
           >
-            Join Us
+            {link.label}
           </Link>
-        </nav>
-      </div>
-    </header>
+        ))}
+        <Link 
+          href="/contact" 
+          className={`mt-4 px-8 py-3 bg-orange-500 text-white rounded-full text-lg font-bold hover:bg-orange-600 transition-all duration-300 ${
+            isMenuOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+          style={{ transitionDelay: isMenuOpen ? `${navLinks.length * 50}ms` : '0ms' }}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Join Us
+        </Link>
+      </nav>
+    </div>
+    </>
   );
 }

@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
 
+// GitHub Pages用の設定（環境変数で制御）
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
 const nextConfig: NextConfig = {
   /* config options here */
   output: "export",
   // GitHub Pages用のベースパス設定（リポジトリ名を指定）
-  basePath: '/Website',
+  basePath: isGitHubPages ? '/Website' : '',
   // 画像やアセットのプレフィックスも同様に設定
-  assetPrefix: '/Website',
+  assetPrefix: isGitHubPages ? '/Website' : '',
   images: {
     unoptimized: true,
     remotePatterns: [

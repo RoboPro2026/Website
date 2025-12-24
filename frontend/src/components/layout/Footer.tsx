@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MOCK_NEWS_LIST } from '@/lib/mock-data';
+import { fetchContentful, fetchAllTags } from '@/lib/api';
+import { Entry, Tag, EntrySkeletonType } from 'contentful';
 
 const SocialIcon = ({ href, children }: { href: string, children: React.ReactNode }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
@@ -9,8 +10,37 @@ const SocialIcon = ({ href, children }: { href: string, children: React.ReactNod
   </a>
 );
 
-export default function Footer() {
-  const recentNews = MOCK_NEWS_LIST.data.slice(0, 5);
+async function getRecentNews() {
+  try {
+    const [newsResponse, allTags] = await Promise.all([
+      fetchContentful('clubNews', { limit: 5, order: ['-fields.date'] }),
+      fetchAllTags()
+    ]);
+
+    const tagMap = new Map<string, Tag>();
+    for (const tag of allTags) {
+      tagMap.set(tag.sys.id, tag);
+    }
+
+    const newsWithTags = newsResponse.items.map((news: Entry<EntrySkeletonType>) => ({
+      ...news,
+      metadata: {
+        ...news.metadata,
+        tags: news.metadata?.tags
+          ?.map((tagLink) => tagMap.get(tagLink.sys.id))
+          .filter(Boolean) as Tag[] || []
+      }
+    }));
+
+    return newsWithTags.slice(0, 5);
+  } catch (error) {
+    console.error('Error fetching news for footer:', error);
+    return [];
+  }
+}
+
+export default async function Footer() {
+  const recentNews = await getRecentNews();
 
   return (
     <footer className="new-footer">
@@ -59,10 +89,10 @@ export default function Footer() {
           <div>
             <h3 className="new-footer-heading">最近のニュース</h3>
             <ul className="space-y-3">
-              {recentNews.map(({ id, attributes: news }) => (
-                <li key={id}>
-                  <Link href={`/news/${id}`} className="new-footer-link">
-                    {news.title}
+              {recentNews.map((news) => (
+                <li key={news.sys.id}>
+                  <Link href={`/news/${news.sys.id}`} className="new-footer-link line-clamp-2">
+                    {String(news.fields.title)}
                   </Link>
                 </li>
               ))}
