@@ -1,24 +1,28 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const supporters = [
-    { name: 'mjs', src: '/assets/sponser/mjs.png' },
-    { name: 'ocs', src: '/assets/sponser/ocs.png' },
-    { name: 'tkf', src: '/assets/sponser/tkf.png' },
-    { name: 'systecom', src: '/assets/sponser/systecom.png' },
-    { name: 'justem', src: '/assets/sponser/justem.png' },
-    { name: 'fieldworks', src: '/assets/sponser/fieldworks.png' },
-    { name: 'unext', src: '/assets/sponser/unext.png' },
-    { name: 'sprix', src: '/assets/sponser/sprix.png' },
-    { name: 'noex', src: '/assets/sponser/noex.png' },
-    { name: 'tdk', src: '/assets/sponser/tdk.png' },
-    { name: 'makita', src: '/assets/sponser/makita.png' },
-    {name: 'npm', src: '/assets/sponser/npm.jpg'},
-    {name: 'tone', src: '/assets/sponser/tone.jpg'},
-];
-
 export default function SupportersPage() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  
+  const supporters = [
+      { name: 'mjs', src: basePath + '/assets/sponser/mjs.png' },
+      { name: 'ocs', src: basePath + '/assets/sponser/ocs.png' },
+      { name: 'tkf', src: basePath + '/assets/sponser/tkf.png' },
+      { name: 'systecom', src: basePath + '/assets/sponser/systecom.png' },
+      { name: 'justem', src: basePath + '/assets/sponser/justem.png' },
+      { name: 'fieldworks', src: basePath + '/assets/sponser/fieldworks.png' },
+      { name: 'unext', src: basePath + '/assets/sponser/unext.png' },
+      { name: 'sprix', src: basePath + '/assets/sponser/sprix.png' },
+      { name: 'noex', src: basePath + '/assets/sponser/noex.png' },
+      { name: 'tdk', src: basePath + '/assets/sponser/tdk.png' },
+      { name: 'makita', src: basePath + '/assets/sponser/makita.png' },
+      { name: 'npm', src: basePath + '/assets/sponser/npm.png' },
+      { name: 'tone', src: basePath + '/assets/sponser/tone.png' },
+  ];
+
   return (
     <div className="min-h-screen bg-stone-50 text-gray-800">
       <main className="py-24 px-4 md:px-8 lg:px-16 fade-in">
@@ -118,7 +122,7 @@ export default function SupportersPage() {
           </section>
 
           <section id="contact-info" className="text-center bg-stone-900 text-white p-12 rounded-3xl relative overflow-hidden">
-             <div className="absolute inset-0 bg-[url('/assets/general/pattern.svg')] opacity-10" />
+             <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url('${basePath}/assets/general/pattern.svg')` }} />
              <div className="relative z-10">
               <h2 className="text-3xl font-bold mb-6">お問い合わせ</h2>
               <p className="text-stone-300 max-w-2xl mx-auto mb-8 leading-relaxed">

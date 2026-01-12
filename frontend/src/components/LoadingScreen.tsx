@@ -9,6 +9,7 @@ interface LoadingScreenProps {
 
 export default function LoadingScreen({ progress }: LoadingScreenProps) {
   const [isVisible, setIsVisible] = useState(true);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   useEffect(() => {
     if (progress >= 100) {
@@ -28,7 +29,7 @@ export default function LoadingScreen({ progress }: LoadingScreenProps) {
         {/* ロゴ */}
         <div className="loading-logo-container">
           <Image
-            src="/assets/general/logo-w.png"
+            src={basePath + "/assets/general/logo-w.png"}
             alt="ロボコンプロジェクトロゴ"
             fill
             className="object-contain"

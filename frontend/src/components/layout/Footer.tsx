@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchContentful, fetchAllTags } from '@/lib/api';
@@ -10,37 +12,41 @@ const SocialIcon = ({ href, children }: { href: string, children: React.ReactNod
   </a>
 );
 
-async function getRecentNews() {
-  try {
-    const [newsResponse, allTags] = await Promise.all([
-      fetchContentful('clubNews', { limit: 5, order: ['-fields.date'] }),
-      fetchAllTags()
-    ]);
+export default function Footer() {
+  const [recentNews, setRecentNews] = useState<Entry<EntrySkeletonType>[]>([]);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-    const tagMap = new Map<string, Tag>();
-    for (const tag of allTags) {
-      tagMap.set(tag.sys.id, tag);
+  useEffect(() => {
+    async function getRecentNews() {
+      try {
+        const [newsResponse, allTags] = await Promise.all([
+          fetchContentful('clubNews', { limit: 5, order: ['-fields.date'] }),
+          fetchAllTags()
+        ]);
+
+        const tagMap = new Map<string, Tag>();
+        for (const tag of allTags) {
+          tagMap.set(tag.sys.id, tag);
+        }
+
+        const newsWithTags = newsResponse.items.map((news: Entry<EntrySkeletonType>) => ({
+          ...news,
+          metadata: {
+            ...news.metadata,
+            tags: news.metadata?.tags
+              ?.map((tagLink) => tagMap.get(tagLink.sys.id))
+              .filter(Boolean) as Tag[] || []
+          }
+        })) as unknown as Entry<EntrySkeletonType>[];
+
+        setRecentNews(newsWithTags.slice(0, 5));
+      } catch (error) {
+        console.error('Error fetching news for footer:', error);
+      }
     }
 
-    const newsWithTags = newsResponse.items.map((news: Entry<EntrySkeletonType>) => ({
-      ...news,
-      metadata: {
-        ...news.metadata,
-        tags: news.metadata?.tags
-          ?.map((tagLink) => tagMap.get(tagLink.sys.id))
-          .filter(Boolean) as Tag[] || []
-      }
-    }));
-
-    return newsWithTags.slice(0, 5);
-  } catch (error) {
-    console.error('Error fetching news for footer:', error);
-    return [];
-  }
-}
-
-export default async function Footer() {
-  const recentNews = await getRecentNews();
+    getRecentNews();
+  }, []);
 
   return (
     <footer className="new-footer">
@@ -50,7 +56,7 @@ export default async function Footer() {
           {/* Column 1: Logo and Social */}
           <div className="space-y-6">
             <Link href="/" className="inline-block">
-              <Image src="/assets/general/logo-w.png" alt="ロボコンプロジェクト ロゴ" width={180} height={40} className="object-contain" />
+              <Image src={basePath + "/assets/general/logo-w.png"} alt="ロボコンプロジェクト ロゴ" width={180} height={40} className="object-contain" />
             </Link>
             <div className="flex space-x-4">
               <SocialIcon href="#">

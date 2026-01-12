@@ -104,7 +104,6 @@ export default function ContactPage() {
                   <p className="text-gray-600 mb-1">〒940-2188 新潟県長岡市上富岡町1603-1</p>
                   <p className="text-gray-600">
                     機械建設棟 2F / セコムホール<br />
-                    (キャンパスマップなどのリンクがあればここに)
                   </p>
                 </div>
               </div>

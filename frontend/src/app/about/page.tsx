@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
 
@@ -28,6 +30,8 @@ const achievements = [
 ];
 
 export default function AboutPage() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  
   return (
     <div className="min-h-screen bg-stone-50 text-gray-800">
       <main className="py-24 px-4 md:px-8 lg:px-16 fade-in">
@@ -56,7 +60,7 @@ export default function AboutPage() {
                 単にロボットを製作するだけでなく、その過程で得られる知識、技術、そしてチームワークを大切にしています。
               </p>
               <p>
-                私たちの活動は、学年や専門分野を問わず、ものづくりに情熱を持つすべての学生に開かれています。初心者から経験者まで、多様なバックグラウンドを持つメンバーが協力し合い、一つの目標に向かって切磋琢磨しています。
+                私たちは、学年や専門分野を問わず、初心者から経験者まで、多様なバックグラウンドを持つメンバーが協力し合い、一つの目標に向かって切磋琢磨しています。
               </p>
             </div>
           </section>
@@ -80,7 +84,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">班活動</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  活動は主に「機械班」「回路班」「制御班」「運営班」の4つの班に分かれて行われます。各班が専門性を高めつつ、密に連携を取ることで、複雑なロボットシステムを完成させます。
+                  活動は主に「機械班」「回路班」「制御班」「運営班」の4つの班に分かれて行われます。各班が専門性を高めつつ、連携を取ることで、複雑なロボットシステムを完成させます。
                 </p>
               </div>
             </div>
@@ -137,7 +141,7 @@ export default function AboutPage() {
 
           {/* メンバー募集 */}
           <section id="recruitment" className="mb-24 bg-stone-900 text-white p-8 md:p-16 rounded-3xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/assets/general/pattern.svg')] opacity-5" />
+            <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `url('${basePath}/assets/general/pattern.svg')` }} />
             <div className="relative z-10 text-center max-w-2xl mx-auto">
               <h2 className="text-3xl font-bold mb-6">Join Us!</h2>
               <p className="text-stone-300 mb-8 leading-relaxed">

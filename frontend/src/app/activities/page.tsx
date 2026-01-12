@@ -3,56 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-const challengeImages = [
-  '/assets/home/robo2.png',
-  '/assets/home/robo1.png',
-  '/assets/home/robo4.png',
-  '/assets/home/robo5.png',
-];
-const communityImages = [
-  '/assets/home/meeting.png',
-  '/assets/home/hoikuen1.png',
-  '/assets/home/event1.png',
-];
-
-const teams = [
-  {
-    name: '機械班',
-    description: 'ロボットの"身体"を作るエキスパート。3DCADによる設計から、工作機械を駆使した部品製作まで、アイデアを物理的な形にする役割を担います。',
-    imageUrl: "/assets/home/hero.png"
-  },
-  {
-    name: '回路班',
-    description: 'ロボットの"神経"を司る電子回路のプロフェッショナル。モータードライバやセンサー基板の設計・製作を行い、ロボットに命を吹き込みます。',
-    imageUrl: "/assets/home/denshi.png"
-  },
-  {
-    name: '制御班',
-    description: 'ロボットの"頭脳"を開発するプログラマー集団。マイコンのプログラミングやAIによる画像認識など、ソフトウェアでロボットの動きを制御します。',
-    imageUrl: "/assets/home/seigyo.png"
-  },
-  {
-    name: '運営班',
-    description: 'プロジェクト全体を支える縁の下の力持ち。スポンサー渉外、広報活動、会計管理など、円滑なプロジェクト運営に不可欠な役割を担います。',
-    imageUrl: "/assets/home/syougaikatsudou.png"
-  }
-];
-
-const contests = [
-  {
-    name: 'NHK学生ロボコン',
-    description: 'NHKが主催する、全国の大学が参加するロボットコンテストです。毎年異なる競技課題が設定され、学生たちの独創的なアイデアと技術力が試されます。この大会で優勝したチームが、日本代表としてABUロボコンへの出場権を得ます。',
-    imageUrl: "/assets/home/nhk.jpg",
-    alt: "NHK学生ロボコン ロゴ",
-  },
-  {
-    name: 'ABUロボコン',
-    description: 'アジア・太平洋地域の放送局が共同で制作する国際的なロボットコンテストです。各国の国内大会を勝ち抜いた代表チームが一堂に会し、技術力とアイデアを競い合います。私たちにとって、世界一を目指すための最高の舞台です。',
-    imageUrl: "/assets/home/abu.png",
-    alt: "ABUロボコン ロゴ",
-  }
-];
-
 const faqs = [
   {
     question: "プログラミングやロボット製作の未経験者でも大丈夫ですか？",
@@ -77,7 +27,58 @@ const faqs = [
 ];
 
 export default function ActivitiesPage() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const challengeImages = [
+    basePath + '/assets/home/robo2.png',
+    basePath + '/assets/home/robo1.png',
+    basePath + '/assets/home/robo4.png',
+    basePath + '/assets/home/robo5.png',
+  ];
+  const communityImages = [
+    basePath + '/assets/home/meeting.png',
+    basePath + '/assets/home/hoikuen1.png',
+    basePath + '/assets/home/event1.png',
+  ];
+
+  const teams = [
+    {
+      name: '機械班',
+      description: 'ロボットの"身体"を作るエキスパート。3DCADによる設計から、工作機械を駆使した部品製作まで、アイデアを物理的な形にする役割を担います。',
+      imageUrl: basePath + "/assets/home/hero.png"
+    },
+    {
+      name: '回路班',
+      description: 'ロボットの"神経"を司る電子回路のプロフェッショナル。モータードライバやセンサー基板の設計・製作を行い、ロボットに命を吹き込みます。',
+      imageUrl: basePath + "/assets/home/denshi.png"
+    },
+    {
+      name: '制御班',
+      description: 'ロボットの"頭脳"を開発するプログラマー集団。マイコンのプログラミングやAIによる画像認識など、ソフトウェアでロボットの動きを制御します。',
+      imageUrl: basePath + "/assets/home/seigyo.png"
+    },
+    {
+      name: '運営班',
+      description: 'プロジェクト全体を支える縁の下の力持ち。スポンサー渉外、広報活動、会計管理など、円滑なプロジェクト運営に不可欠な役割を担います。',
+      imageUrl: basePath + "/assets/home/syougaikatsudou.png"
+    }
+  ];
+
+  const contests = [
+    {
+      name: 'NHK学生ロボコン',
+      description: 'NHKが主催する、全国の大学が参加するロボットコンテストです。毎年異なる競技課題が設定され、学生たちの独創的なアイデアと技術力が試されます。この大会で優勝したチームが、日本代表としてABUロボコンへの出場権を得ます。',
+      imageUrl: basePath + "/assets/home/nhk.png",
+      alt: "NHK学生ロボコン ロゴ",
+    },
+    {
+      name: 'ABUロボコン',
+      description: 'アジア・太平洋地域の放送局が共同で制作する国際的なロボットコンテストです。各国の国内大会を勝ち抜いた代表チームが一堂に会し、技術力とアイデアを競い合います。私たちにとって、世界一を目指すための最高の舞台です。',
+      imageUrl: basePath + "/assets/home/abu.png",
+      alt: "ABUロボコン ロゴ",
+    }
+  ];
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);

@@ -9,6 +9,7 @@ import { NewsEntry } from "@/types/cms";
 
 export default function NewsSection() {
   const [newsList, setNewsList] = useState<(Entry<NewsEntry> & { metadata: { tags: Tag[] } })[]>([]);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   
   useEffect(() => {
     async function getNews() {
@@ -63,7 +64,7 @@ export default function NewsSection() {
               <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 group-hover:shadow-xl group-hover:-translate-y-1 h-full">
                 <div className="w-full h-48 relative">
                     <Image 
-                    src={(news.fields.image as unknown as Asset)?.fields?.file?.url ? `https:${(news.fields.image as unknown as Asset).fields.file?.url}` : '/assets/home/hero.png'}
+                    src={(news.fields.image as unknown as Asset)?.fields?.file?.url ? `https:${(news.fields.image as unknown as Asset).fields.file?.url}` : basePath + '/assets/home/hero.png'}
                     alt={String(news.fields.title)}
                     fill
                     className="object-cover" 

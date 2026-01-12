@@ -58,6 +58,7 @@ type Props = {
 };
 
 export default async function NewsArticlePage({ params }: Props) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const { id } = await params;
   const article = await getNewsArticle(id);
 
@@ -66,7 +67,7 @@ export default async function NewsArticlePage({ params }: Props) {
   }
 
   const { title, context, content, date, image } = article.fields;
-  const imageUrl = (image as unknown as Asset)?.fields?.file?.url ? `https:${(image as unknown as Asset).fields.file?.url}` : '/assets/home/hero.png';
+  const imageUrl = (image as unknown as Asset)?.fields?.file?.url ? `https:${(image as unknown as Asset).fields.file?.url}` : basePath + '/assets/home/hero.png';
   const tags = article.metadata?.tags || [];
   
   // contentフィールドがある場合はリッチテキスト、ない場合はcontextをMarkdownとして表示

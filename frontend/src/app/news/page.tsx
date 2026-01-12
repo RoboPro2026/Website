@@ -8,6 +8,7 @@ import { fetchContentful, fetchAllTags } from '@/lib/api';
 import { NewsEntry } from '@/types/cms';
 
 export default function NewsListPage() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const [newsList, setNewsList] = useState<(Entry<NewsEntry> & { metadata: { tags: Tag[] } })[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -75,7 +76,7 @@ export default function NewsListPage() {
                 <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 overflow-hidden h-full flex flex-col group-hover:-translate-y-1">
                   <div className="w-full h-56 relative overflow-hidden">
                       <Image 
-                      src={(news.fields.image as unknown as Asset)?.fields?.file?.url ? `https:${(news.fields.image as unknown as Asset).fields.file?.url}` : '/assets/home/hero.png'}
+                      src={(news.fields.image as unknown as Asset)?.fields?.file?.url ? `https:${(news.fields.image as unknown as Asset).fields.file?.url}` : basePath + '/assets/home/hero.png'}
                       alt={String(news.fields.title)} 
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-110" 

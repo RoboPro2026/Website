@@ -9,11 +9,11 @@ import LoadingScreen from "@/components/LoadingScreen";
 
 // 読み込む画像のリスト
 const imageUrls = [
-  '/assets/home/hero.png',
-  '/assets/home/denshi.png',
-  '/assets/news/robocon2024.jpg',
-  '/assets/news/welcome.jpg',
-  '/assets/news/sponsor.jpg',
+  'hero.png',
+  'denshi.png',
+  'robocon2024.jpg',
+  'welcome.jpg',
+  'sponsor.jpg',
 ];
 
 interface Supporter {
@@ -35,14 +35,15 @@ const supporters: Supporter[] = [
   { src: '/assets/sponser/tkf.png', alt: 'TKF', width: 150, height: 50 },
   { src: '/assets/sponser/systecom.png', alt: 'Systecom', width: 150, height: 50 },
   { src: '/assets/sponser/ocs.png', alt: 'OCS', width: 150, height: 50 },
-  { src: '/assets/sponser/npm.jpg', alt: 'NPM', width: 150, height: 50 },
-  { src: '/assets/sponser/tone.jpg', alt: 'TONE', width: 150, height: 50 },
+  { src: '/assets/sponser/npm.png', alt: 'NPM', width: 150, height: 50 },
+  { src: '/assets/sponser/tone.png', alt: 'TONE', width: 150, height: 50 },
 ];
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [shuffledSupporters, setShuffledSupporters] = useState<Supporter[]>([]);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   useEffect(() => {
     const shuffled = [...supporters];
@@ -103,7 +104,7 @@ export default function Home() {
       <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/assets/home/hero.png"
+            src={basePath + "/assets/home/hero.png"}
             alt="サークル活動の様子"
             fill
             className="object-cover w-full h-full"
@@ -150,14 +151,14 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: '機械班', en: 'Mechanical', description: 'CADでの設計から加工まで。ロボットのカタチを一から作り上げます。', imgSrc: '/assets/home/hero.png' },
+              { name: '機械班', en: 'Mechanical', description: 'CADでの設計から加工まで。ロボットのカタチを一から作り上げます。', imgSrc: '/assets/home/kikai2.png' },
               { name: '回路班', en: 'Electrical', description: '基板設計や配線を行い、ロボットが動くための神経回路を繋ぎます。', imgSrc: '/assets/home/denshi.png' },
-              { name: '制御班', en: 'Control', description: 'プログラミングを駆使して、ロボットに命を吹き込み、自在に操ります。', imgSrc: '/assets/home/seigyo.jpeg' },
+              { name: '制御班', en: 'Control', description: 'プログラミングを駆使して、ロボットに命を吹き込み、自在に操ります。', imgSrc: '/assets/home/seigyo.png' },
               { name: '運営班', en: 'Management', description: '広報やイベント企画など、ロボット製作以外の面からチームを支えます。', imgSrc: '/assets/home/syougaikatsudou.png' }
             ].map((team) => (
               <div key={team.name} className="group relative h-96 rounded-2xl overflow-hidden shadow-lg cursor-pointer">
                 <Image 
-                  src={team.imgSrc} 
+                  src={basePath + team.imgSrc} 
                   alt={team.name} 
                   fill 
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" 
@@ -233,7 +234,7 @@ export default function Home() {
       {/* スケジュール */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
-          <h2 className="text-3xl font-bold text-center mb-16">年間スケジュール</h2>
+          <h2 className="text-3xl font-bold text-center mb-16 text-gray-900">年間スケジュール</h2>
           <div className="relative max-w-4xl mx-auto">
              <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2 hidden md:block" />
              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -246,7 +247,7 @@ export default function Home() {
                  <div key={i} className="relative bg-white p-6 rounded-xl border border-gray-100 shadow-sm z-10">
                    <div className="text-orange-500 font-bold mb-2">{item.month}</div>
                    <h3 className="font-bold text-lg mb-2 text-gray-900">{item.title}</h3>
-                   <p className="text-sm text-gray-800">{item.desc}</p>
+                   <p className="text-sm text-gray-900">{item.desc}</p>
                  </div>
                ))}
              </div>
@@ -272,7 +273,7 @@ export default function Home() {
             {shuffledSupporters.map((supporter) => (
               <div key={supporter.src} className="relative w-[120px] h-[60px] md:w-[160px] md:h-[80px] transition-transform hover:scale-110 duration-300">
                 <Image
-                  src={supporter.src}
+                  src={basePath + supporter.src}
                   alt={supporter.alt}
                   fill
                   className="object-contain"
@@ -291,7 +292,7 @@ export default function Home() {
 
       {/* お問い合わせへの誘導 */}
       <section className="py-24 bg-stone-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/assets/general/pattern.svg')] opacity-5" />
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `url('${basePath}/assets/general/pattern.svg')` }} />
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-8">Join Our Team</h2>
           <p className="text-xl text-stone-300 max-w-2xl mx-auto mb-12">
