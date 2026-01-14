@@ -9,10 +9,14 @@ const basePath = isNagaokaUT ? '/~robocon' : (isGitHubPages ? '/Website' : '');
 const nextConfig: NextConfig = {
   output: "export",
   // 大学サーバーなら '/~robocon'、GitHubなら '/Website'、それ以外は空
+  
   basePath: basePath,
+  
+  trailingSlash: true,
   
   // assetPrefix も basePath と合わせるのが一般的です
   assetPrefix: basePath,
+  
 
   // 環境変数としてbasePathをクライアントサイドで利用可能にする
   env: {

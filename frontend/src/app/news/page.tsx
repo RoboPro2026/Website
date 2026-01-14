@@ -93,12 +93,9 @@ export default function NewsListPage() {
                     <time className="text-sm text-stone-400 mb-3 font-medium block">
                       {new Date(String(news.fields.date)).toLocaleDateString('ja-JP')}
                     </time>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-orange-600 transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6 line-clamp-2 leading-tight group-hover:text-orange-600 transition-colors flex-grow">
                       {String(news.fields.title)}
                     </h3>
-                    <p className="text-gray-600 text-sm md:text-base line-clamp-3 mb-6 flex-grow leading-relaxed">
-                      {String(news.fields.context)}
-                    </p>
                     <div className="mt-auto flex items-center text-orange-600 font-bold text-sm">
                       READ MORE
                       <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

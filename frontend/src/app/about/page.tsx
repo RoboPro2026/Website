@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const achievements = [
   { year: '2025', details: ['東海地区交流ロボコンにてRohm株式会社様より特別賞受賞。'] },
-  { year: '2024', details: ['NHK学生ロボコン2024にてベスト8およびアイディア賞を受賞。'] },
+  { year: '2024', details: ['NHK学生ロボコン2024にてベスト4およびアイディア賞を受賞。'] },
   { year: '2021', details: ['NHK学生ロボコン2021にて優勝およびABUロボコン出場。'] },
   { year: '2020', details: ['オンライン！学ロボFESTIVALに参加。パナソニックシステムソリューションズジャパン株式会社様より特別賞を受賞。'] },
   { year: '2019', details: ['NHK学生ロボコン2019にてベスト8およびアイディア賞を受賞。', '東海地区交流ロボコンにて第3位入賞。', 'SummerRobotContestにて第3位入賞。'] },
