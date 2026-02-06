@@ -69,10 +69,29 @@ export default function SupportersPage() {
                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">資金によるご支援</h3>
-                <p className="mb-6 text-gray-600 leading-relaxed flex-grow">
+                <p className="mb-4 text-gray-600 leading-relaxed">
                   ロボットの部品購入費、加工費、遠征費など、活動の基盤となる資金をご支援いただく形です。
                   金額の多寡に関わらず、温かいご支援をお願い申し上げます。
                 </p>
+                
+                {/* 税制優遇情報 */}
+                <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div className="flex-grow">
+                      <h4 className="font-bold text-blue-900 mb-1 text-sm">税制上のメリット</h4>
+                      <p className="text-sm text-blue-800 leading-relaxed">
+                        長岡技術科学大学への寄付は、<span className="font-bold">税制上の優遇措置</span>の対象となります。
+                        法人の場合は寄付金を<span className="font-bold">全額損金算入</span>でき、個人の場合は<span className="font-bold">寄付金控除</span>を受けることができます。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="bg-stone-50 p-5 rounded-xl">
                   <h4 className="font-bold mb-2 text-stone-800 text-sm">御礼・特典の例:</h4>
                   <ul className="list-disc pl-5 space-y-1 text-sm text-stone-600">
@@ -90,9 +109,34 @@ export default function SupportersPage() {
                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">物品によるご支援</h3>
-                <p className="mb-6 text-gray-600 leading-relaxed flex-grow">
+                <p className="mb-4 text-gray-600 leading-relaxed">
                   モーター、センサー、電子部品、加工工具、PC周辺機器など、ロボット開発に必要な物品・機材をご提供いただく形です。
                 </p>
+
+                {/* 物品の具体例 */}
+                <div className="bg-green-50 border border-green-200 rounded-xl p-5 mb-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div className="flex-grow">
+                      <h4 className="font-bold text-green-900 mb-2 text-sm">ご支援いただきたい物品の例</h4>
+                      <div className="grid grid-cols-2 gap-2 text-sm text-green-800">
+                        <div>• モーター・アクチュエータ</div>
+                        <div>• センサー類</div>
+                        <div>• 電子部品・基板</div>
+                        <div>• 加工工具</div>
+                        <div>• PC・周辺機器</div>
+                        <div>• 計測機器</div>
+                        <div>• 材料（アルミ材など）</div>
+                        <div>• その他機材</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="bg-stone-50 p-5 rounded-xl">
                    <h4 className="font-bold mb-2 text-stone-800 text-sm">御礼・特典の例:</h4>
                    <ul className="list-disc pl-5 space-y-1 text-sm text-stone-600">
@@ -130,6 +174,24 @@ export default function SupportersPage() {
                       金額の大小に関わらず、皆様からのご支援が学生たちの大きな励みになります。
                       いただいたご支援は、ロボット製作の材料費、部品購入費、大会遠征費などに大切に使わせていただきます。
                     </p>
+                  </div>
+                </div>
+
+                {/* 税制優遇情報 */}
+                <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div className="flex-grow">
+                      <h4 className="font-bold text-blue-900 mb-1 text-sm">個人の方も寄付金控除の対象です</h4>
+                      <p className="text-sm text-blue-800 leading-relaxed">
+                        長岡技術科学大学への寄付は、個人の方も<span className="font-bold">寄付金控除</span>を受けることができます。
+                        確定申告の際に控除を申請いただけます。
+                      </p>
+                    </div>
                   </div>
                 </div>
 
