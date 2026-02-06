@@ -1,0 +1,14 @@
+# iframeでの埋め込みを制限（セキュリティ対策）
+Header set X-Frame-Options "SAMEORIGIN"
+Header set Content-Security-Policy "frame-ancestors 'self'"
+
+RewriteEngine On
+
+# ディレクトリが存在する場合、index.htmlを自動的に表示
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# ディレクトリの場合、index.htmlを表示
+DirectoryIndex index.html

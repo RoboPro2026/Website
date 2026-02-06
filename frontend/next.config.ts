@@ -12,8 +12,6 @@ const nextConfig: NextConfig = {
   
   basePath: basePath,
   
-  trailingSlash: true,
-  
   // assetPrefix も basePath と合わせるのが一般的です
   assetPrefix: basePath,
   

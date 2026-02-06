@@ -37,11 +37,11 @@ export default function ContactPage() {
             </p>
             <a 
               href="mailto:robopro.nut@gmail.com" 
-              className="inline-flex items-center justify-center px-8 py-4 bg-orange-600 text-white font-bold rounded-full hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30 text-lg group"
+              className="inline-flex items-center justify-center px-4 md:px-8 py-3 md:py-4 bg-orange-600 text-white font-bold rounded-full hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-500/30 text-sm md:text-lg group max-w-full"
             >
-              <span className="mr-2">✉️</span>
-              robopro.nut@gmail.com
-              <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <span className="mr-1 md:mr-2">✉️</span>
+              <span className="break-all">robopro.nut@gmail.com</span>
+              <svg className="w-4 h-4 md:w-5 md:h-5 ml-1 md:ml-2 flex-shrink-0 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </a>
