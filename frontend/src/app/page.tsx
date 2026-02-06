@@ -6,6 +6,7 @@ import Link from "next/link";
 import NewsSection from "@/components/sections/NewsSection";
 import SnsSection from "@/components/sections/SnsSection";
 import LoadingScreen from "@/components/LoadingScreen";
+import { activeSupporters, type Supporter } from "@/lib/sponsors";
 
 // 読み込む画像のリスト
 const imageUrls = [
@@ -16,29 +17,6 @@ const imageUrls = [
   'sponsor.jpg',
 ];
 
-interface Supporter {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}
-
-const supporters: Supporter[] = [
-  { src: '/assets/sponser/tdk.png', alt: 'TDK', width: 150, height: 50 },
-  { src: '/assets/sponser/makita.png', alt: 'Makita', width: 150, height: 50 },
-  { src: '/assets/sponser/mjs.png', alt: 'MJS', width: 150, height: 50 },
-  { src: '/assets/sponser/unext.png', alt: 'U-NEXT', width: 150, height: 50 },
-  { src: '/assets/sponser/sprix.png', alt: 'Sprix', width: 150, height: 50 },
-  { src: '/assets/sponser/justem.png', alt: 'Justem', width: 120, height: 50 },
-  { src: '/assets/sponser/fieldworks.png', alt: 'Fieldworks', width: 150, height: 50 },
-  { src: '/assets/sponser/noex.png', alt: 'Noex', width: 150, height: 50 },
-  { src: '/assets/sponser/tkf.png', alt: 'TKF', width: 150, height: 50 },
-  { src: '/assets/sponser/systecom.png', alt: 'Systecom', width: 150, height: 50 },
-  { src: '/assets/sponser/ocs.png', alt: 'OCS', width: 150, height: 50 },
-  { src: '/assets/sponser/npm.png', alt: 'NPM', width: 150, height: 50 },
-  { src: '/assets/sponser/tone.png', alt: 'TONE', width: 150, height: 50 },
-];
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -46,7 +24,7 @@ export default function Home() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
   useEffect(() => {
-    const shuffled = [...supporters];
+    const shuffled = [...activeSupporters];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -274,7 +252,7 @@ export default function Home() {
               <div key={supporter.src} className="relative w-[120px] h-[60px] md:w-[160px] md:h-[80px] transition-transform hover:scale-110 duration-300">
                 <Image
                   src={basePath + supporter.src}
-                  alt={supporter.alt}
+                  alt={supporter.alt || supporter.name || 'Supporter'}
                   fill
                   className="object-contain"
                 />

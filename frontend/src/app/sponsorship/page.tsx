@@ -3,25 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { supporters } from '@/lib/sponsors';
 
 export default function SupportersPage() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  
-  const supporters = [
-      { name: 'mjs', src: basePath + '/assets/sponser/mjs.png' },
-      { name: 'ocs', src: basePath + '/assets/sponser/ocs.png' },
-      { name: 'tkf', src: basePath + '/assets/sponser/tkf.png' },
-      { name: 'systecom', src: basePath + '/assets/sponser/systecom.png' },
-      { name: 'justem', src: basePath + '/assets/sponser/justem.png' },
-      { name: 'fieldworks', src: basePath + '/assets/sponser/fieldworks.png' },
-      { name: 'unext', src: basePath + '/assets/sponser/unext.png' },
-      { name: 'sprix', src: basePath + '/assets/sponser/sprix.png' },
-      { name: 'noex', src: basePath + '/assets/sponser/noex.png' },
-      { name: 'tdk', src: basePath + '/assets/sponser/tdk.png' },
-      { name: 'makita', src: basePath + '/assets/sponser/makita.png' },
-      { name: 'npm', src: basePath + '/assets/sponser/npm.png' },
-      { name: 'tone', src: basePath + '/assets/sponser/tone.png' },
-  ];
 
   return (
     <div className="min-h-screen bg-stone-50 text-gray-800">
@@ -63,7 +48,7 @@ export default function SupportersPage() {
                 {supporters.map(supporter => (
                   <div key={supporter.name} className="flex justify-center transition-all duration-300 hover:scale-110">
                     <Image 
-                      src={supporter.src} 
+                      src={basePath + supporter.src} 
                       alt={`ご支援企業 ${supporter.name}`}
                       width={160}
                       height={60}
