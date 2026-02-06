@@ -1,12 +1,22 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { activeSupporters } from '@/lib/sponsors';
+import { activeSupporters, type Supporter } from '@/lib/sponsors';
 
 export default function SupportersPage() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const [shuffledSupporters, setShuffledSupporters] = useState<Supporter[]>([]);
+
+  useEffect(() => {
+    const shuffled = [...activeSupporters];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    setShuffledSupporters(shuffled);
+  }, []);
 
   return (
     <div className="min-h-screen bg-stone-50 text-gray-800">
@@ -44,9 +54,9 @@ export default function SupportersPage() {
           <section id="current-supporters" className="mb-24">
             <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">ご支援いただいている企業様</h2>
             <div className="bg-white p-12 rounded-3xl shadow-sm border border-stone-100">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 items-center">
-                {activeSupporters.map(supporter => (
-                  <div key={supporter.name} className="flex justify-center transition-all duration-300 hover:scale-110">
+              <div className="flex flex-wrap justify-center items-center gap-12">
+                {shuffledSupporters.map(supporter => (
+                  <div key={supporter.name} className="transition-all duration-300 hover:scale-110">
                     <Image 
                       src={basePath + supporter.src} 
                       alt={`ご支援企業 ${supporter.name}`}

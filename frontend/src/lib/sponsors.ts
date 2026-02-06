@@ -18,7 +18,7 @@ export const supporters: Supporter[] = [
   { name: 'justem', src: '/assets/sponser/justem.png', alt: 'Justem', width: 120, height: 50, active: false },
   { name: 'fieldworks', src: '/assets/sponser/fieldworks.png', alt: 'Fieldworks', width: 150, height: 50, active: true },
   { name: 'noex', src: '/assets/sponser/noex.png', alt: 'Noex', width: 150, height: 50, active: true },
-  { name: 'tkf', src: '/assets/sponser/tkf.png', alt: 'TKF', width: 150, height: 50, active: false },
+  { name: 'tkf', src: '/assets/sponser/tkf.png', alt: 'TKF', width: 150, height: 50, active: true },
   { name: 'systecom', src: '/assets/sponser/systecom.png', alt: 'Systecom', width: 150, height: 50, active: true },
   { name: 'ocs', src: '/assets/sponser/ocs.png', alt: 'OCS', width: 150, height: 50, active: true },
   { name: 'npm', src: '/assets/sponser/npm.png', alt: 'NPM', width: 150, height: 50, active: true },
@@ -26,6 +26,7 @@ export const supporters: Supporter[] = [
   { name: 'kitagawa', src: '/assets/sponser/kitagawa.webp', alt: 'Kitagawa', width: 150, height: 50, active: true },
   { name: 'gidai', src: '/assets/sponser/gidai.webp', alt: 'Gidai', width: 150, height: 50, active: true },
   { name: 'smc', src: '/assets/sponser/smc.webp', alt: 'SMC', width: 150, height: 50, active: true },
+  { name: 'mathworks', src: '/assets/sponser/mathworks.webp', alt: 'MathWorks', width: 150, height: 50, active: true },
 ];
 
 // アクティブなスポンサーのみ（active !== false）
