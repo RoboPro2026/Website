@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { supporters } from '@/lib/sponsors';
+import { activeSupporters } from '@/lib/sponsors';
 
 export default function SupportersPage() {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
@@ -45,7 +45,7 @@ export default function SupportersPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">ご支援いただいている企業様</h2>
             <div className="bg-white p-12 rounded-3xl shadow-sm border border-stone-100">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 items-center">
-                {supporters.map(supporter => (
+                {activeSupporters.map(supporter => (
                   <div key={supporter.name} className="flex justify-center transition-all duration-300 hover:scale-110">
                     <Image 
                       src={basePath + supporter.src} 
@@ -103,6 +103,63 @@ export default function SupportersPage() {
                 </div>
               </div>
 
+            </div>
+          </section>
+
+          {/* 個人スポンサー向けセクション */}
+          <section className="mb-24">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">個人の皆様へ</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                学生の挑戦を応援したい。ものづくりの未来を支えたい。<br/>
+                そんな想いを持つ個人の皆様からのご支援も心よりお待ちしております。
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-50 to-white rounded-3xl p-8 md:p-12 border border-orange-100 shadow-sm">
+              <div className="max-w-3xl mx-auto">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">温かいご支援をお待ちしています</h3>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      金額の大小に関わらず、皆様からのご支援が学生たちの大きな励みになります。
+                      いただいたご支援は、ロボット製作の材料費、部品購入費、大会遠征費などに大切に使わせていただきます。
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl p-6 border border-orange-200">
+                  <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                    <span className="text-orange-500">✓</span>
+                    個人スポンサーの特典
+                  </h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-500 mt-1">•</span>
+                      <span>活動報告書の送付</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-500 mt-1">•</span>
+                      <span>お名前の掲載（ご希望の方のみ）</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-500 mt-1">•</span>
+                      <span>活動見学のご案内</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-6 text-center">
+                  <p className="text-sm text-gray-600 mb-4">
+                    ご支援をご検討いただける方は、お気軽にお問い合わせください。
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 

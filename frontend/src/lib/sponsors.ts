@@ -6,7 +6,7 @@ export interface Supporter {
   alt: string;
   width?: number;
   height?: number;
-  active?: boolean; // トップページに表示するかどうか
+  active?: boolean; // サイトに表示するかどうか（falseで非表示）
 }
 
 export const supporters: Supporter[] = [
@@ -28,5 +28,5 @@ export const supporters: Supporter[] = [
   { name: 'smc', src: '/assets/sponser/smc.webp', alt: 'SMC', width: 150, height: 50, active: true },
 ];
 
-// トップページ用（activeなスポンサーのみ）
+// アクティブなスポンサーのみ（active !== false）
 export const activeSupporters = supporters.filter(s => s.active !== false);
