@@ -77,8 +77,7 @@ export default function NewsSection() {
                 </div>
                 <div className="p-6">
                   <p className="text-sm text-stone-500 mb-2">{new Date(String(news.fields.date)).toLocaleDateString('ja-JP')}</p>
-                  <h3 className="text-xl font-bold text-stone-800 mb-3 line-clamp-2 leading-tight">{String(news.fields.title)}</h3>
-                  <p className="text-stone-600 text-base line-clamp-3 mb-4">{String(news.fields.context)}</p>
+                  <h3 className="text-xl font-bold text-stone-800 mb-4 line-clamp-2 leading-tight">{String(news.fields.title)}</h3>
                   <span className="text-orange-500 font-semibold group-hover:underline">
                     続きを読む
                   </span>
